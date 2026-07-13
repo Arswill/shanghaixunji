@@ -39,17 +39,17 @@ function getProvinceStyle(
   isHover: boolean
 ): ProvinceStyle {
   const baseStroke = discovered ? COLORS.moJiao : COLORS.moQing
-  const baseStrokeWidth = discovered ? (isHover ? 3.0 : 2.0) : (isHover ? 2.2 : 1.2)
-  const baseStrokeOpacity = discovered ? 1 : 0.7
+  const baseStrokeWidth = discovered ? (isHover ? 3.5 : 2.5) : (isHover ? 3.0 : 2.0)
+  const baseStrokeOpacity = discovered ? 1 : 0.9
 
   if (!discovered) {
     return {
       fillColor: COLORS.paperMist,
-      fillOpacity: isHover ? 0.75 : 0.55,
+      fillOpacity: isHover ? 0.85 : 0.7,
       strokeColor: baseStroke,
       strokeWidth: baseStrokeWidth,
       strokeOpacity: baseStrokeOpacity,
-      dashArray: [3, 5],
+      dashArray: [4, 4],
       glowColor: isHover ? COLORS.glow.hover : undefined,
       glowBlur: isHover ? 8 : 0,
     }

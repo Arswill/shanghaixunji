@@ -24,8 +24,10 @@ import {
   useProgress,
   Bounds,
   ContactShadows,
+  Environment,
+  Lightformer,
 } from '@react-three/drei'
-import { EffectComposer, Bloom } from '@react-three/postprocessing'
+import { EffectComposer, Bloom, Vignette, N8AO, SMAA } from '@react-three/postprocessing'
 import * as THREE from 'three'
 
 // ──────────────────────────────────────────────
@@ -158,30 +160,42 @@ function MagicCircle({ color = '#c9a96e' }: { color?: string }) {
   const ring1 = useRef<THREE.Mesh>(null)
   const ring2 = useRef<THREE.Mesh>(null)
   const ring3 = useRef<THREE.Mesh>(null)
+  const glowRef = useRef<THREE.Mesh>(null)
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime()
-    if (ring1.current) ring1.current.rotation.z = t * 0.15
-    if (ring2.current) ring2.current.rotation.z = -t * 0.22
-    if (ring3.current) ring3.current.rotation.y = Math.sin(t * 0.3) * 0.1
+    if (ring1.current) ring1.current.rotation.z = t * 0.12
+    if (ring2.current) ring2.current.rotation.z = -t * 0.18
+    if (ring3.current) ring3.current.rotation.z = t * 0.1
+    if (glowRef.current) {
+      const pulse = 1 + Math.sin(t * 1.5) * 0.2
+      glowRef.current.scale.setScalar(pulse)
+      const mat = glowRef.current.material as THREE.MeshBasicMaterial
+      mat.opacity = 0.12 + Math.sin(t * 1.5) * 0.05
+    }
   })
 
   return (
     <group position={[0, -1.25, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      {/* 发光底盘 */}
+      <mesh ref={glowRef}>
+        <ringGeometry args={[0.9, 2.5, 64]} />
+        <meshBasicMaterial color={color} transparent opacity={0.12} side={THREE.DoubleSide} depthWrite={false} />
+      </mesh>
       {/* 外环 */}
       <mesh ref={ring1}>
-        <ringGeometry args={[2.0, 2.08, 64]} />
-        <meshBasicMaterial color={color} transparent opacity={0.35} side={THREE.DoubleSide} />
+        <ringGeometry args={[2.0, 2.18, 64]} />
+        <meshBasicMaterial color={color} transparent opacity={0.55} side={THREE.DoubleSide} />
       </mesh>
       {/* 中环 */}
       <mesh ref={ring2}>
-        <ringGeometry args={[1.5, 1.55, 48]} />
-        <meshBasicMaterial color={color} transparent opacity={0.25} side={THREE.DoubleSide} />
+        <ringGeometry args={[1.5, 1.64, 48]} />
+        <meshBasicMaterial color={color} transparent opacity={0.4} side={THREE.DoubleSide} />
       </mesh>
       {/* 内环符文点 */}
       <mesh ref={ring3}>
-        <ringGeometry args={[1.1, 1.12, 12]} />
-        <meshBasicMaterial color="#f5e4b8" transparent opacity={0.5} side={THREE.DoubleSide} />
+        <ringGeometry args={[1.05, 1.12, 18]} />
+        <meshBasicMaterial color="#f5e4b8" transparent opacity={0.7} side={THREE.DoubleSide} />
       </mesh>
     </group>
   )
@@ -202,19 +216,17 @@ function CreatureModel({ modelUrl }: { modelUrl: string }) {
     cloned.current = scene.clone(true)
   }
 
-  // 材质增强 + 收集可发光网格
+  // 材质增强 — 保留原始 PBR 纹理，仅微调环境光响应
   useEffect(() => {
     cloned.current?.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         child.castShadow = true
         child.receiveShadow = true
         if (child.material instanceof THREE.MeshStandardMaterial) {
-          child.material.envMapIntensity = 1.6
-          // 给低多边形模型增加一点自发光，呈现"灵气"轮廓
-          child.material.emissive = new THREE.Color('#1a1510')
-          child.material.emissiveIntensity = 0.25
-          child.material.roughness = Math.max(0.45, child.material.roughness * 0.9)
-          child.material.metalness = Math.min(0.85, child.material.metalness + 0.15)
+          child.material.envMapIntensity = 1.2
+          // 不覆盖原始 emissive，保留模型自带的纹理细节
+          child.material.roughness = Math.max(0.35, child.material.roughness)
+          child.material.metalness = Math.min(0.7, child.material.metalness)
           child.material.needsUpdate = true
         }
       }
@@ -293,13 +305,13 @@ export function Creature3DPreview({
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: 'radial-gradient(ellipse at center, #1e222d 0%, #0c0e14 100%)',
+        background: 'radial-gradient(ellipse at 50% 40%, #3a3028 0%, #14110d 80%, #080705 100%)',
       }
     : {
         width: '100%',
         height: '100%',
         minHeight: '320px',
-        background: 'radial-gradient(ellipse at center, #1e222d 0%, #0c0e14 100%)',
+        background: 'radial-gradient(ellipse at 50% 40%, #3a3028 0%, #1e1a14 60%, #0c0b08 100%)',
         borderRadius: '12px',
         overflow: 'hidden',
       }
@@ -348,23 +360,23 @@ export function Creature3DPreview({
       </div>
 
       <Canvas
-        camera={{ position: [0, 0.2, 3.3], fov: 42 }}
+        camera={{ position: [0, 0.1, 2.2], fov: 55 }}
         gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
         shadows
-        dpr={[1, 1.5]}
+        dpr={[1, 2]}
         style={{ width: '100%', height: '100%' }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping
-          gl.toneMappingExposure = 1.15
+          gl.toneMappingExposure = 1.3
         }}
       >
-        {/* 三点布光 */}
-        <ambientLight intensity={0.35} />
+        {/* 收敛灯光：主光 + 轮廓光，环境靠 HDRI */}
         <directionalLight
           position={[4, 6, 4]}
-          intensity={1.4}
+          intensity={2.5}
           castShadow
-          shadow-mapSize={[1024, 1024]}
+          shadow-mapSize={[2048, 2048]}
+          shadow-bias={-0.0001}
           shadow-camera-far={20}
           shadow-camera-left={-5}
           shadow-camera-right={5}
@@ -372,52 +384,67 @@ export function Creature3DPreview({
           shadow-camera-bottom={-5}
           color="#fff5e0"
         />
-        {/* 轮廓光（暖金） */}
-        <spotLight
-          position={[-4, 2, -3]}
-          angle={Math.PI / 5}
-          penumbra={0.8}
-          intensity={2.0}
+        <directionalLight
+          position={[-5, 3, -4]}
+          intensity={3.0}
           color="#d4a857"
-          distance={15}
         />
-        {/* 补光（冷青） */}
-        <pointLight position={[3, -1, -2]} intensity={0.8} color="#6ca6a0" />
+
+        {/* 暗黑奇幻环境贴图 — 给 PBR 材质提供反射 */}
+        <Environment resolution={256} background={false}>
+          <color attach="background" args={['#000']} />
+          <Lightformer form="rect" intensity={2.5} color="#9fb4d6"
+            position={[0, 4, 1]} scale={[6, 1, 1]} rotation={[-Math.PI / 2, 0, 0]} />
+          <Lightformer form="rect" intensity={4} color="#d4a857"
+            position={[-4, 1, -2]} scale={[1, 4, 1]} rotation={[0, Math.PI / 2, 0]} />
+          <Lightformer form="rect" intensity={3} color="#6ca6a0"
+            position={[4, 1, -3]} scale={[1, 4, 1]} rotation={[0, -Math.PI / 2, 0]} />
+          <Lightformer form="circle" intensity={1.2} color="#fff"
+            position={[0, 1, 5]} scale={2} />
+        </Environment>
 
         <Suspense fallback={<Loader name={creatureName} />}>
           <ModelWrapper modelUrl={modelUrl} onError={handleError} />
-          <SpiritParticles color="#d4a857" count={160} />
-          <SpiritParticles color="#6ca6a0" count={80} />
-          <MagicCircle color="#c9a96e" />
+          <SpiritParticles color="#d4a857" count={80} />
           <ContactShadows
             position={[0, -1.25, 0]}
-            opacity={0.45}
+            opacity={0.5}
             scale={10}
             blur={2.5}
             far={4}
           />
         </Suspense>
 
-        {/* 交互控件：更慢的自动旋转 */}
+        {/* 交互控件 */}
         <OrbitControls
           enableZoom
           enablePan={false}
           autoRotate
-          autoRotateSpeed={0.6}
-          minDistance={1.8}
-          maxDistance={6}
+          autoRotateSpeed={0.4}
+          minDistance={1.5}
+          maxDistance={5}
           minPolarAngle={Math.PI / 6}
           maxPolarAngle={Math.PI / 1.8}
         />
 
-        {/* 后处理：更强的泛光 */}
-        <EffectComposer>
+        {/* 后处理：电影感三件套 */}
+        <EffectComposer multisampling={4} disableNormalPass>
           <Bloom
-            luminanceThreshold={0.25}
+            luminanceThreshold={0.6}
             luminanceSmoothing={0.85}
             intensity={0.9}
             mipmapBlur
+            radius={0.7}
           />
+          <N8AO
+            aoRadius={0.6}
+            intensity={1.4}
+            distanceFalloff={0.6}
+            halfRes
+            color="#000000"
+          />
+          <Vignette offset={0.3} darkness={0.85} eskil={false} />
+          <SMAA />
         </EffectComposer>
       </Canvas>
     </div>

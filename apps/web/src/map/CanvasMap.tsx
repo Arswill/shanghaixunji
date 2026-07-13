@@ -154,13 +154,13 @@ export function CanvasMap({
       const isDisc = style.fillOpacity > 0.7
       const isHover = hoveredName === name
 
-      ctx.font = isDisc ? "bold 11px 'ZCOOL XiaoWei', 'Noto Serif SC', serif" : "10px 'ZCOOL XiaoWei', 'Noto Serif SC', serif"
+      ctx.font = isDisc ? "bold 13px 'ZCOOL XiaoWei', 'Noto Serif SC', serif" : "bold 12px 'ZCOOL XiaoWei', 'Noto Serif SC', serif"
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillStyle = isDisc ? 'rgba(139, 58, 42, 0.85)' : 'rgba(90, 74, 58, 0.6)'
+      ctx.fillStyle = isDisc ? 'rgba(139, 58, 42, 0.9)' : 'rgba(140, 120, 90, 0.85)'
       if (isHover) {
-        ctx.fillStyle = 'rgba(200, 160, 64, 0.95)'
-        ctx.font = "bold 13px 'ZCOOL XiaoWei', 'Noto Serif SC', serif"
+        ctx.fillStyle = 'rgba(255, 200, 80, 1)'
+        ctx.font = "bold 15px 'ZCOOL XiaoWei', 'Noto Serif SC', serif"
       }
       ctx.fillText(name, cx, cy)
     }
