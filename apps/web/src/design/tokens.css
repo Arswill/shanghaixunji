@@ -1,0 +1,309 @@
+/* ═══════════════════════════════════════════════════════════════
+   山海寻迹 · 仙侠风设计系统 (Xianxia Design Tokens)
+   ─────────────────────────────────────────────
+   主题: 飘逸仙侠 (Ethereal Xianxia) — 九天仙阙 / 三界神游
+   关键词: 玉白仙雾 / 玄青 / 仙金 / 紫电 / 翠玉 / 桃粉 / 朱砂
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* ══ 暗夜底色 (Dark Epic Base) ══ */
+  --celestial-jade: #0e0c09;       /* 深渊 */
+  --celestial-mist: #1a1814;       /* 暗土 */
+  --celestial-white: #242017;      /* 浮面 */
+  --celestial-paper: #1f1c16;      /* 卷面 */
+  --celestial-fog: #2a2418;        /* 远雾 */
+  --celestial-night: #050810;      /* 极夜 */
+
+  /* ══ 五方正色 (Five Direction Colors) — 暗色适配 ══ */
+  --xuan-qing: #5d8aab;            /* 玄青 — 东方青龙 */
+  --xuan-qing-light: #8aabcd;
+  --xuan-qing-deep: #3a5870;
+  --shu-xi: #c87080;               /* 曙曦 — 西方白虎 */
+  --chu-bai: #c8d4e0;              /* 楚白 — 西方白虎 */
+  --zhu-guan: #d04848;             /* 朱冠 — 南方朱雀 */
+  --zhu-guan-light: #e2655d;
+  --xuan-wu: #5a6e8a;              /* 玄武 — 北方玄武 */
+  --kun-lun: #c8a050;              /* 昆仑金 — 中央 */
+  --kun-lun-light: #d4b870;
+  --kun-lun-bright: #e6c890;
+
+  /* ══ 仙金 (Immortal Gold) — 暗色适配 ══ */
+  --immortal-gold: #b8924a;
+  --immortal-gold-bright: #d4a857;
+  --immortal-gold-deep: #7a6438;
+  --immortal-gold-glow: #b8924a;
+
+  /* ══ 紫电 (Thunder Purple) — 雷劫 / 仙法 ══ */
+  --thunder-purple: #7b4ea0;
+  --thunder-purple-light: #9d6fc4;
+  --thunder-purple-deep: #4a2b6b;
+  --thunder-violet: #b886d6;
+
+  /* ══ 翠玉 (Jade Green) — 暗色适配 ══ */
+  --jade-cui: #3a6a4a;
+  --jade-cui-light: #5a8a6b;
+  --jade-cui-deep: #2a4a38;
+  --jade-mint: #4a6b58;
+
+  /* ══ 桃粉 (Peach Blossom) — 暗色适配 ══ */
+  --peach-pink: #d08898;
+  --peach-blossom: #e0a0a8;
+  --peach-deep: #a8606a;
+
+  /* ══ 朱砂 (Cinnabar) — 暗色适配 ══ */
+  --cinnabar: #a8332a;
+  --cinnabar-bright: #c8423a;
+  --cinnabar-deep: #6a1a16;
+  --cinnabar-glow: #a8332a;
+
+  /* ══ 仙墨 (Immortal Ink) — 暗色翻转：深底浅字 ══ */
+  --ink-heaven: #f0f5f1;          /* 天玄 — 最亮 */
+  --ink-deep: #d8e0e8;            /* 玄青浅 */
+  --ink-zhong: #d8c9a8;           /* 重墨 — 主文字 */
+  --ink-dan: #8a7d63;             /* 淡墨 — 次文字 */
+  --ink-light: #5a5040;           /* 清墨 — 辅助 */
+  --ink-faint: #3a3220;           /* 极淡 — 占位 */
+  --ink-dim: #2a2418;             /* 暗墨 — 分割 */
+
+  /* ══ 旧主题兼容别名 (兼容现有组件) ══ */
+  --paper-white: var(--celestial-mist);
+  --paper-warm: var(--celestial-jade);
+  --paper-aged: var(--celestial-paper);
+  --paper-texture: var(--celestial-fog);
+  --paper-mist: rgba(26, 24, 20, 0.5);
+
+  --mo-jiao: var(--ink-heaven);
+  --mo-nong: var(--ink-deep);
+  --mo-zhong: var(--ink-zhong);
+  --mo-dan: var(--ink-dan);
+  --mo-qing: var(--ink-light);
+
+  --vermillion: var(--cinnabar);
+  --vermillion-dark: var(--cinnabar-deep);
+  --vermillion-light: var(--cinnabar-bright);
+  --yin-ni: var(--cinnabar-deep);
+  --hua-qing: var(--xuan-qing);
+  --zhe-shi: var(--immortal-gold);
+  --cha-lv: var(--jade-cui);
+  --jin-bo: var(--immortal-gold);
+
+  --bg-base: var(--celestial-mist);
+  --bg-deep: var(--celestial-jade);
+  --bg-raised: var(--celestial-white);
+  --ink-primary: var(--ink-zhong);
+  --ink-muted: var(--ink-dan);
+  --ink-faint: var(--ink-light);
+  --acc-cinnabar: var(--cinnabar);
+  --acc-jade: var(--jade-cui);
+  --acc-bronze: var(--immortal-gold-deep);
+  --acc-gold: var(--immortal-gold);
+  --acc-gold-bright: var(--immortal-gold-bright);
+  --acc-azure: var(--xuan-qing);
+  --acc-crimson: var(--cinnabar-deep);
+  --surf-weathered: var(--celestial-fog);
+  --surf-crack: var(--ink-light);
+  --surf-fog: var(--celestial-jade);
+
+  /* ══ 山经疆域 (神兽地图分区) — 降饱和暗色 ══ */
+  --region-south: #3a5a3a;          /* 南方朱雀 — 暗翠 */
+  --region-west: #8a6428;           /* 西方白虎 — 暗金 */
+  --region-north: #2a4858;          /* 北方玄武 — 暗青 */
+  --region-east: #5a3a78;           /* 东方青龙 — 暗紫 */
+  --region-central: #a8332a;        /* 中央 — 暗砂 */
+  --region-outer: #5a6b80;          /* 海外 — 暗墨 */
+
+  /* 山经疆域透明叠色 (用于地图) */
+  --region-south-wash: rgba(58, 90, 58, 0.35);
+  --region-west-wash: rgba(138, 100, 40, 0.32);
+  --region-north-wash: rgba(42, 72, 88, 0.35);
+  --region-east-wash: rgba(90, 58, 120, 0.34);
+  --region-central-wash: rgba(168, 51, 42, 0.32);
+  --region-outer-wash: rgba(90, 107, 128, 0.30);
+
+  /* 未探索省份：暗雾 */
+  --paper-mist: rgba(26, 24, 20, 0.5);
+
+  /* ══ 稀有度 (三阶仙品) — 暗色适配 ══ */
+  --rarity-ssr: #a8332a;            /* 仙品 — 朱砂 */
+  --rarity-sr: var(--immortal-gold); /* 灵品 — 仙金 */
+  --rarity-r: var(--jade-cui);      /* 凡品 — 翠玉 */
+
+  /* ══ 仙字体栈 (Immortal Fonts) ══ */
+  --font-display: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', serif;
+  --font-body: 'Noto Serif SC', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+  --font-kai: 'ZCOOL XiaoWei', 'Ma Shan Zheng', '楷体', 'KaiTi', 'STKaiti', serif;
+  --font-brush: 'Ma Shan Zheng', 'Liu Jian Mao Cao', 'ZCOOL XiaoWei', cursive;
+  --font-mono: 'SF Mono', 'Consolas', monospace;
+  --font-xian: 'ZCOOL XiaoWei', 'Noto Serif SC', 'Songti SC', serif;   /* 仙风细体 */
+  --font-seal: 'ZCOOL XiaoWei', 'STKaiti', 'KaiTi', serif;             /* 印章篆体 */
+
+  /* ══ 仙侠动效曲线 (Xianxia Easing) ══ */
+  --ease-xian: cubic-bezier(0.22, 1, 0.36, 1);          /* 仙气升腾 */
+  --ease-mist: cubic-bezier(0.65, 0, 0.35, 1);          /* 云雾飘渺 */
+  --ease-thunder: cubic-bezier(0.34, 1.56, 0.64, 1);    /* 紫电 */
+  --ease-flying: cubic-bezier(0.5, 0, 0.3, 1);          /* 御剑飞行 */
+  --ease-talisman: cubic-bezier(0.4, 0, 0.2, 1);        /* 符箓展开 */
+
+  /* ══ 仙光阴影 (Xianxia Shadows) — 暗色增强 ══ */
+  --shadow-xian: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-xian-lg: 0 4px 28px rgba(0, 0, 0, 0.6);
+  --shadow-jade: 0 0 16px rgba(58, 106, 74, 0.25);
+  --shadow-gold: 0 0 20px rgba(184, 146, 74, 0.32);
+  --shadow-thunder: 0 0 24px rgba(123, 78, 160, 0.35);
+  --shadow-cinnabar: 0 0 16px rgba(168, 51, 42, 0.4);
+  --shadow-rune: 0 0 12px rgba(184, 146, 74, 0.45);
+  --shadow-immortal: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(184, 146, 74, 0.2);
+
+  /* ══ 暗黑史诗新增令牌 ══ */
+  --bg-overlay: #2a2418;
+  --bg-surface: #1f1c16;
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 28px rgba(0, 0, 0, 0.6);
+  --shadow-glow-cinnabar: 0 0 16px rgba(168, 51, 42, 0.4);
+  --shadow-glow-gold: 0 0 16px rgba(184, 146, 74, 0.3);
+  --grad-bg: radial-gradient(ellipse at 50% 0%, rgba(42, 36, 24, 0.6) 0%, transparent 60%), linear-gradient(180deg, #1a1814 0%, #0e0c09 100%);
+  --grad-card: linear-gradient(135deg, rgba(36, 32, 23, 0.95) 0%, rgba(30, 26, 18, 0.9) 100%);
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  :root {
+    --celestial-mist: #ffffff;
+    --celestial-jade: #ffffff;
+    --ink-heaven: #000000;
+    --ink-deep: #000000;
+    --ink-zhong: #000000;
+    --ink-dan: #333333;
+    --ink-light: #666666;
+    --cinnabar: #cc0000;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   山海寻迹 · 仙侠"仙境"暗夜主题
+   ─────────────────────────────────────────────
+   切换方式: [data-theme="celestial"] — 九天夜幕
+   ═══════════════════════════════════════════════════════════════ */
+[data-theme="celestial"] {
+  --celestial-jade: #0a0f1c;
+  --celestial-mist: #0e1422;
+  --celestial-white: #1a2138;
+  --celestial-paper: #121a2a;
+  --celestial-fog: #1f2a40;
+  --celestial-night: #050810;
+
+  --xuan-qing: #5d8aab;
+  --xuan-qing-light: #8aabcd;
+  --xuan-qing-deep: #3a5870;
+  --shu-xi: #f07a8a;
+  --chu-bai: #c8d4e0;
+  --zhu-guan: #f06558;
+  --zhu-guan-light: #ff8a7a;
+  --xuan-wu: #5a6e8a;
+  --kun-lun: #f3d58a;
+  --kun-lun-light: #f8e4a8;
+  --kun-lun-bright: #faf0c0;
+
+  --immortal-gold: #e6c178;
+  --immortal-gold-bright: #f3d58a;
+  --immortal-gold-deep: #a8843a;
+  --immortal-gold-glow: #f8e8b8;
+
+  --thunder-purple: #9d6fc4;
+  --thunder-purple-light: #b886d6;
+  --thunder-purple-deep: #6b4090;
+  --thunder-violet: #d4a8e6;
+
+  --jade-cui: #6fad8b;
+  --jade-cui-light: #8ac4a8;
+  --jade-cui-deep: #4a8c6b;
+  --jade-mint: #4a6b58;
+
+  --peach-pink: #f0a8b3;
+  --peach-blossom: #f5c4cb;
+  --peach-deep: #c87882;
+
+  --cinnabar: #e2655d;
+  --cinnabar-bright: #ff8a7a;
+  --cinnabar-deep: #a8322a;
+  --cinnabar-glow: #f0a09a;
+
+  --ink-heaven: #f0f5f1;
+  --ink-deep: #d8e0e8;
+  --ink-zhong: #b8c2cf;
+  --ink-dan: #8a99b0;
+  --ink-light: #5a6b80;
+  --ink-faint: #3a4858;
+
+  --paper-white: var(--celestial-mist);
+  --paper-warm: var(--celestial-jade);
+  --paper-aged: var(--celestial-paper);
+  --paper-texture: var(--celestial-fog);
+  --paper-mist: rgba(14, 20, 34, 0.5);
+
+  --mo-jiao: var(--ink-heaven);
+  --mo-nong: var(--ink-deep);
+  --mo-zhong: var(--ink-zhong);
+  --mo-dan: var(--ink-dan);
+  --mo-qing: var(--ink-light);
+
+  --vermillion: var(--cinnabar);
+  --vermillion-dark: var(--cinnabar-deep);
+  --vermillion-light: var(--cinnabar-bright);
+  --yin-ni: var(--cinnabar-deep);
+  --hua-qing: var(--xuan-qing);
+  --zhe-shi: var(--immortal-gold);
+  --cha-lv: var(--jade-cui);
+  --jin-bo: var(--immortal-gold);
+
+  --bg-base: var(--celestial-mist);
+  --bg-deep: var(--celestial-jade);
+  --bg-raised: var(--celestial-white);
+  --ink-primary: var(--ink-zhong);
+  --ink-muted: var(--ink-dan);
+  --ink-faint: var(--ink-light);
+  --acc-cinnabar: var(--cinnabar);
+  --acc-jade: var(--jade-cui);
+  --acc-bronze: var(--immortal-gold-deep);
+  --acc-gold: var(--immortal-gold);
+  --acc-gold-bright: var(--immortal-gold-bright);
+  --acc-azure: var(--xuan-qing);
+  --acc-crimson: var(--cinnabar-deep);
+  --surf-weathered: var(--celestial-fog);
+  --surf-crack: var(--ink-light);
+  --surf-fog: var(--celestial-jade);
+
+  --region-south: #4a8c6b;
+  --region-west: #c8893d;
+  --region-north: #4a7088;
+  --region-east: #8a5cb0;
+  --region-central: #c8423a;
+  --region-outer: #5a6b80;
+
+  --region-south-wash: rgba(74, 140, 107, 0.35);
+  --region-west-wash: rgba(200, 137, 61, 0.32);
+  --region-north-wash: rgba(74, 112, 136, 0.35);
+  --region-east-wash: rgba(138, 92, 176, 0.34);
+  --region-central-wash: rgba(200, 66, 58, 0.32);
+  --region-outer-wash: rgba(90, 107, 128, 0.30);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   仙侠"蓬莱仙境"主题 (亮)
+   ─────────────────────────────────────────────
+   切换方式: [data-theme="penglai"] — 蓬莱仙岛
+   ═══════════════════════════════════════════════════════════════ */
+[data-theme="penglai"] {
+  --celestial-jade: #d8e8e0;
+  --celestial-mist: #e8f0eb;
+  --celestial-white: #f4f8f5;
+  --celestial-paper: #dde7e0;
+  --celestial-fog: #c8d8d0;
+  --celestial-night: #4a6b58;
+
+  --xuan-qing: #2d4a5e;
+  --immortal-gold: #d4a857;
+  --cinnabar: #c8423a;
+  --jade-cui: #4a8c6b;
+  --thunder-purple: #7b4ea0;
+  --peach-pink: #f0a8b3;
+}

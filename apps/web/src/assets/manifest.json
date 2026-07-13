@@ -1,0 +1,418 @@
+{
+  "bi-fang": {
+    "image": "assets/images/bi-fang.jpg",
+    "audio": "assets/audio/bi-fang__陕西.mp3"
+  },
+  "qi-lin": {
+    "image": "assets/images/qi-lin.jpg",
+    "audio": "assets/audio/qi-lin__山西.mp3"
+  },
+  "fei-fei": {
+    "image": "assets/images/fei-fei.jpg",
+    "audio": "assets/audio/fei-fei__河南.mp3"
+  },
+  "chu-shuo": {
+    "image": "assets/images/chu-shuo.jpg",
+    "audio": "assets/audio/chu-shuo__四川.mp3"
+  },
+  "jiu-wei-hu": {
+    "image": "assets/images/jiu-wei-hu.jpg",
+    "audio": "assets/audio/jiu-wei-hu__湖南.mp3"
+  },
+  "jian": {
+    "image": "assets/images/jian.jpg",
+    "audio": "assets/audio/jian__两广.mp3"
+  },
+  "qiong-qi": {
+    "image": "assets/images/qiong-qi.jpg",
+    "audio": "assets/audio/qiong-qi__陕西.mp3"
+  },
+  "tao-tie": {
+    "image": "assets/images/tao-tie.jpg",
+    "audio": "assets/audio/tao-tie__河南.mp3"
+  },
+  "ying-long": {
+    "image": "assets/images/ying-long.jpg",
+    "audio": "assets/audio/ying-long__河南.mp3"
+  },
+  "bai-ze": {
+    "image": "assets/images/bai-ze.jpg",
+    "audio": "assets/audio/bai-ze__山东.mp3"
+  },
+  "pi-xiu": {
+    "image": "assets/images/pi-xiu.jpg",
+    "audio": "assets/audio/pi-xiu__四川.mp3"
+  },
+  "suan-ni": {
+    "image": "assets/images/suan-ni.jpg",
+    "audio": "assets/audio/suan-ni__山西.mp3"
+  },
+  "xie-zhi": {
+    "image": "assets/images/xie-zhi.jpg",
+    "audio": "assets/audio/xie-zhi__陕西.mp3"
+  },
+  "tao-wu": {
+    "image": "assets/images/tao-wu.jpg",
+    "audio": "assets/audio/tao-wu__湖北.mp3"
+  },
+  "hun-dun": {
+    "image": "assets/images/hun-dun.jpg",
+    "audio": "assets/audio/hun-dun__江苏.mp3"
+  },
+  "zhu-yan": {
+    "image": "assets/images/zhu-yan.jpg",
+    "audio": "assets/audio/zhu-yan__陕西.mp3"
+  },
+  "zheng": {
+    "image": "assets/images/zheng.jpg",
+    "audio": "assets/audio/zheng__四川.mp3"
+  },
+  "tian-gou": {
+    "image": "assets/images/tian-gou.jpg",
+    "audio": "assets/audio/tian-gou__陕西.mp3"
+  },
+  "xuan-gui": {
+    "image": "assets/images/xuan-gui.jpg",
+    "audio": "assets/audio/xuan-gui__广东.mp3"
+  },
+  "luo-yu": {
+    "image": "assets/images/luo-yu.jpg",
+    "audio": "assets/audio/luo-yu__甘肃.mp3"
+  },
+  "luan-niao": {
+    "image": "assets/images/luan-niao.jpg",
+    "audio": "assets/audio/luan-niao__山西.mp3"
+  },
+  "wen-yao-yu": {
+    "image": "assets/images/wen-yao-yu.jpg",
+    "audio": "assets/audio/wen-yao-yu__山东.mp3"
+  },
+  "sheng-sheng": {
+    "image": "assets/images/sheng-sheng.jpg",
+    "audio": "assets/audio/sheng-sheng__广东.mp3"
+  },
+  "lu-shu": {
+    "image": "assets/images/lu-shu.jpg",
+    "audio": "assets/audio/lu-shu__广东.mp3"
+  },
+  "qian-yang": {
+    "image": "assets/images/qian-yang.jpg",
+    "audio": "assets/audio/qian-yang__陕西.mp3"
+  },
+  "wu-qu": {
+    "image": "assets/images/wu-qu.jpg",
+    "audio": "assets/audio/wu-qu__陕西.mp3"
+  },
+  "fei-teng": {
+    "image": "assets/images/fei-teng.jpg",
+    "audio": "assets/audio/fei-teng__陕西.mp3"
+  },
+  "hua-yu": {
+    "image": "assets/images/hua-yu.jpg",
+    "audio": "assets/audio/hua-yu__山西.mp3"
+  },
+  "shui-ma": {
+    "image": "assets/images/shui-ma.jpg",
+    "audio": "assets/audio/shui-ma__山西.mp3"
+  },
+  "jing-wei": {
+    "image": "assets/images/jing-wei.jpg",
+    "audio": "assets/audio/jing-wei__河北.mp3"
+  },
+  "kua-fu": {
+    "image": "assets/images/kua-fu.jpg",
+    "audio": "assets/audio/kua-fu__河北.mp3"
+  },
+  "chi-you": {
+    "image": "assets/images/chi-you.jpg",
+    "audio": "assets/audio/chi-you__河北.mp3"
+  },
+  "jiao-tu": {
+    "image": "assets/images/jiao-tu.jpg",
+    "audio": "assets/audio/jiao-tu__北京.mp3"
+  },
+  "bi-xi": {
+    "image": "assets/images/bi-xi.jpg",
+    "audio": "assets/audio/bi-xi__北京.mp3"
+  },
+  "chi-ru": {
+    "image": "assets/images/chi-ru.jpg",
+    "audio": "assets/audio/chi-ru__天津.mp3"
+  },
+  "bing-can": {
+    "image": "assets/images/bing-can.jpg",
+    "audio": "assets/audio/bing-can__内蒙古.mp3"
+  },
+  "xuan-wu": {
+    "image": "assets/images/xuan-wu.jpg",
+    "audio": "assets/audio/xuan-wu__辽宁.mp3"
+  },
+  "fu-zhu": {
+    "image": "assets/images/fu-zhu.jpg",
+    "audio": "assets/audio/fu-zhu__吉林.mp3"
+  },
+  "fei-lian": {
+    "image": "assets/images/fei-lian.jpg",
+    "audio": "assets/audio/fei-lian__黑龙江.mp3"
+  },
+  "yu-qiang": {
+    "image": "assets/images/yu-qiang.jpg",
+    "audio": "assets/audio/yu-qiang__黑龙江.mp3"
+  },
+  "di-jiang": {
+    "image": "assets/images/di-jiang.jpg",
+    "audio": "assets/audio/di-jiang__上海.mp3"
+  },
+  "yu-yao": {
+    "image": "assets/images/yu-yao.jpg",
+    "audio": "assets/audio/yu-yao__上海.mp3"
+  },
+  "kui": {
+    "image": "assets/images/kui.jpg",
+    "audio": "assets/audio/kui__上海.mp3"
+  },
+  "bi-yi-niao": {
+    "image": "assets/images/bi-yi-niao.jpg",
+    "audio": "assets/audio/bi-yi-niao__浙江.mp3"
+  },
+  "hua-huai": {
+    "image": "assets/images/hua-huai.jpg",
+    "audio": "assets/audio/hua-huai__浙江.mp3"
+  },
+  "zhu-que": {
+    "image": "assets/images/zhu-que.jpg",
+    "audio": "assets/audio/zhu-que__安徽.mp3"
+  },
+  "bai-hu": {
+    "image": "assets/images/bai-hu.jpg",
+    "audio": "assets/audio/bai-hu__福建.mp3"
+  },
+  "jue-ru": {
+    "image": "assets/images/jue-ru.jpg",
+    "audio": "assets/audio/jue-ru__福建.mp3"
+  },
+  "gou-chen": {
+    "image": "assets/images/gou-chen.jpg",
+    "audio": "assets/audio/gou-chen__江西.mp3"
+  },
+  "kun-peng": {
+    "image": "assets/images/kun-peng.jpg",
+    "audio": "assets/audio/kun-peng__海南.mp3"
+  },
+  "kai-ming-shou": {
+    "image": "assets/images/kai-ming-shou.jpg",
+    "audio": "assets/audio/kai-ming-shou__海南.mp3"
+  },
+  "ba-she": {
+    "image": "assets/images/ba-she.jpg",
+    "audio": "assets/audio/ba-she__重庆.mp3"
+  },
+  "gu-diao": {
+    "image": "assets/images/gu-diao.jpg",
+    "audio": "assets/audio/gu-diao__贵州.mp3"
+  },
+  "xi-xi": {
+    "image": "assets/images/xi-xi.jpg",
+    "audio": "assets/audio/xi-xi__贵州.mp3"
+  },
+  "kong-que-ming-wang": {
+    "image": "assets/images/kong-que-ming-wang.jpg",
+    "audio": "assets/audio/kong-que-ming-wang__云南.mp3"
+  },
+  "xue-yu-ling-shou": {
+    "image": "assets/images/xue-yu-ling-shou.jpg",
+    "audio": "assets/audio/xue-yu-ling-shou__西藏.mp3"
+  },
+  "ye-cha": {
+    "image": "assets/images/ye-cha.jpg",
+    "audio": "assets/audio/ye-cha__西藏.mp3"
+  },
+  "qing-niao": {
+    "image": "assets/images/qing-niao.jpg",
+    "audio": "assets/audio/qing-niao__青海.mp3"
+  },
+  "yan-zi": {
+    "image": "assets/images/yan-zi.jpg",
+    "audio": "assets/audio/yan-zi__青海.mp3"
+  },
+  "luo-tuo-shen": {
+    "image": "assets/images/luo-tuo-shen.jpg",
+    "audio": "assets/audio/luo-tuo-shen__宁夏.mp3"
+  },
+  "sha-mo-jing-ling": {
+    "image": "assets/images/sha-mo-jing-ling.jpg",
+    "audio": "assets/audio/sha-mo-jing-ling__新疆.mp3"
+  },
+  "ying-zhao": {
+    "image": "assets/images/ying-zhao.jpg",
+    "audio": "assets/audio/ying-zhao__新疆.mp3"
+  },
+  "lu-wu": {
+    "image": "assets/images/lu-wu.jpg",
+    "audio": "assets/audio/lu-wu__新疆.mp3"
+  },
+  "tu-lao": {
+    "image": "assets/images/tu-lao.jpg",
+    "audio": "assets/audio/tu-lao__新疆.mp3"
+  },
+  "qin-yuan": {
+    "image": "assets/images/qin-yuan.jpg",
+    "audio": "assets/audio/qin-yuan__新疆.mp3"
+  },
+  "jiao-ren": {
+    "image": "assets/images/jiao-ren.jpg",
+    "audio": "assets/audio/jiao-ren__台湾.mp3"
+  },
+  "jiao-long": {
+    "image": "assets/images/jiao-long.jpg",
+    "audio": "assets/audio/jiao-long__香港.mp3"
+  },
+  "hai-huang-shou": {
+    "image": "assets/images/hai-huang-shou.jpg",
+    "audio": "assets/audio/hai-huang-shou__澳门.mp3"
+  },
+  "dang-kang": {
+    "image": "assets/images/dang-kang.jpg",
+    "audio": "assets/audio/dang-kang__山东.mp3"
+  },
+  "pao-xiao": {
+    "image": "assets/images/pao-xiao.jpg",
+    "audio": "assets/audio/pao-xiao__河南.mp3"
+  },
+  "ming-she": {
+    "image": "assets/images/ming-she.jpg",
+    "audio": "assets/audio/ming-she__河南.mp3"
+  },
+  "hua-she": {
+    "image": "assets/images/hua-she.jpg",
+    "audio": "assets/audio/hua-she__山西.mp3"
+  },
+  "zhu-jian": {
+    "image": "assets/images/zhu-jian.jpg",
+    "audio": "assets/audio/zhu-jian__山西.mp3"
+  },
+  "dang-hu": {
+    "image": "assets/images/dang-hu.jpg",
+    "audio": "assets/audio/dang-hu__陕西.mp3"
+  },
+  "tian-fei": {
+    "image": "assets/images/tian-fei.jpg",
+    "audio": "assets/audio/tian-fei__陕西.mp3"
+  },
+  "qing-geng": {
+    "image": "assets/images/qing-geng.jpg",
+    "audio": "assets/audio/qing-geng__河南.mp3"
+  },
+  "zou-yu": {
+    "image": "assets/images/zou-yu.jpg",
+    "audio": "assets/audio/zou-yu__山西.mp3"
+  },
+  "ji-meng": {
+    "image": "assets/images/ji-meng.jpg",
+    "audio": "assets/audio/ji-meng__河南.mp3"
+  },
+  "xing-tian": {
+    "image": "assets/images/xing-tian.jpg",
+    "audio": "assets/audio/xing-tian__河南.mp3"
+  },
+  "xiang-liu": {
+    "image": "assets/images/xiang-liu.jpg",
+    "audio": "assets/audio/xiang-liu__河南.mp3"
+  },
+  "can-ma": {
+    "image": "assets/images/can-ma.jpg",
+    "audio": "assets/audio/can-ma__四川.mp3"
+  },
+  "yu-shi-qie": {
+    "image": "assets/images/yu-shi-qie.jpg",
+    "audio": "assets/audio/yu-shi-qie__湖南.mp3"
+  },
+  "feng-bo": {
+    "image": "assets/images/feng-bo.jpg",
+    "audio": "assets/audio/feng-bo__湖北.mp3"
+  },
+  "yu-shi": {
+    "image": "assets/images/yu-shi.jpg",
+    "audio": "assets/audio/yu-shi__湖北.mp3"
+  },
+  "han-ba": {
+    "image": "assets/images/han-ba.jpg",
+    "audio": "assets/audio/han-ba__甘肃.mp3"
+  },
+  "peng-she": {
+    "image": "assets/images/peng-she.jpg",
+    "audio": "assets/audio/peng-she__四川.mp3"
+  },
+  "hao-zhi": {
+    "image": "assets/images/hao-zhi.jpg",
+    "audio": "assets/audio/hao-zhi__陕西.mp3"
+  },
+  "xi-qu": {
+    "image": "assets/images/xi-qu.jpg",
+    "audio": "assets/audio/xi-qu__湖北.mp3"
+  },
+  "fei-shu": {
+    "image": "assets/images/fei-shu.jpg",
+    "audio": "assets/audio/fei-shu__山西.mp3"
+  },
+  "yu-niao": {
+    "image": "assets/images/yu-niao.jpg",
+    "audio": "assets/audio/yu-niao__河南.mp3"
+  },
+  "shan-gao": {
+    "image": "assets/images/shan-gao.jpg",
+    "audio": "assets/audio/shan-gao__河南.mp3"
+  },
+  "wen-lin": {
+    "image": "assets/images/wen-lin.jpg",
+    "audio": "assets/audio/wen-lin__河南.mp3"
+  },
+  "lei-niao": {
+    "image": "assets/images/lei-niao.jpg",
+    "audio": "assets/audio/lei-niao__陕西.mp3"
+  },
+  "jie-gou": {
+    "image": "assets/images/jie-gou.jpg",
+    "audio": "assets/audio/jie-gou__山东.mp3"
+  },
+  "han-fu": {
+    "image": "assets/images/han-fu.jpg",
+    "audio": "assets/audio/han-fu__山东.mp3"
+  },
+  "duo-niao": {
+    "image": "assets/images/duo-niao.jpg",
+    "audio": "assets/audio/duo-niao__山东.mp3"
+  },
+  "jiao-chong": {
+    "image": "assets/images/jiao-chong.jpg",
+    "audio": "assets/audio/jiao-chong__河南.mp3"
+  },
+  "min-niao": {
+    "image": "assets/images/min-niao.jpg",
+    "audio": "assets/audio/min-niao__甘肃.mp3"
+  },
+  "wo-yu": {
+    "image": "assets/images/wo-yu.jpg",
+    "audio": "assets/audio/wo-yu__山东.mp3"
+  },
+  "chang-you": {
+    "image": "assets/images/chang-you.jpg",
+    "audio": "assets/audio/chang-you__甘肃.mp3"
+  },
+  "lei-jiu": {
+    "image": "assets/images/lei-jiu.jpg",
+    "audio": "assets/audio/lei-jiu__广东.mp3"
+  },
+  "er-shu": {
+    "image": "assets/images/er-shu.jpg",
+    "audio": "assets/audio/er-shu__山西.mp3"
+  },
+  "huan-shu": {
+    "image": "assets/images/huan-shu.jpg",
+    "audio": "assets/audio/huan-shu__山西.mp3"
+  },
+  "si": {
+    "image": "assets/images/si.jpg",
+    "audio": "assets/audio/si__广西.mp3"
+  }
+}

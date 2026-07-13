@@ -1,0 +1,5 @@
+# 混元3D 批量生成神兽模型 - 依赖
+# 零 SDK 依赖，仅需要 requests（通常已安装）
+# 安装：pip install -r pipelines/model3d/requirements.txt
+
+requests>=2.28.0

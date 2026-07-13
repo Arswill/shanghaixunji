@@ -1,0 +1,32 @@
+/* BestiaryView 局部样式 —— 节气神兽金色脉冲边框 + 见闻录淡入。
+   仅在 collection/ 目录内新增，不修改全局 index.css。 */
+
+@keyframes bestiary-season-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(184, 146, 74, 0.9), 0 0 10px rgba(184, 146, 74, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(184, 146, 74, 0.35), 0 0 18px rgba(184, 146, 74, 0.95);
+  }
+}
+
+.animate-season-pulse {
+  animation: bestiary-season-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes bestiary-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bestiary-fade-in {
+  animation: bestiary-fade-in 0.4s ease-out forwards;
+}
+
+/* 卷册标签横向滚动条隐化 */
+.bestiary-tabs-scroll {
+  scrollbar-width: thin;
+}
+.bestiary-tabs-scroll::-webkit-scrollbar {
+  height: 4px;
+}

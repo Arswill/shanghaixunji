@@ -1,0 +1,522 @@
+[
+  {
+    "id": "bi-fang",
+    "province": "陕西",
+    "original_text": "有鸟焉，其状如鹤，一足，青质白文，赤喙，名曰毕方。其鸣自叫也，见则邑有讹火。"
+  },
+  {
+    "id": "qi-lin",
+    "province": "山西",
+    "original_text": "毛虫三百六十，而麒麟为之长。麇身，牛尾，黄毛，圆蹄，角端有肉。含仁怀义，音中律吕，步中规度。"
+  },
+  {
+    "id": "fei-fei",
+    "province": "河南",
+    "original_text": "有蛇焉，名曰肥遗，六足四翼，见则天下大旱。"
+  },
+  {
+    "id": "chu-shuo",
+    "province": "四川",
+    "original_text": "钟山之神，名曰烛阴，视为昼，瞑为夜；吹为冬，呼为夏；不饮，不食，不息，息为风。身长千里。"
+  },
+  {
+    "id": "jiu-wei-hu",
+    "province": "湖南",
+    "original_text": "青丘之山，有兽焉，其状如狐而九尾，其音如婴儿，能食人，食者不蛊。"
+  },
+  {
+    "id": "jian",
+    "province": "两广",
+    "original_text": "南方有赣巨人，人面长唇，黑身有毛，见人笑亦笑，笑则上唇掩其目。"
+  },
+  {
+    "id": "qiong-qi",
+    "province": "陕西",
+    "original_text": "有兽焉，其状如牛，猬毛，名曰穷奇，音如嗥狗，是食人。"
+  },
+  {
+    "id": "tao-tie",
+    "province": "河南",
+    "original_text": "钩吾之山，有兽焉，其状如羊身人面，其目在腋下，虎齿人爪，其音如婴儿，名曰饕餮，是食人。"
+  },
+  {
+    "id": "ying-long",
+    "province": "河南",
+    "original_text": "应龙处南极，杀蚩尤与夸父，不得复上，故下数旱。旱而为应龙之状，乃得大雨。"
+  },
+  {
+    "id": "bai-ze",
+    "province": "山东",
+    "original_text": "帝巡狩，东至海，登桓山，于海滨得白泽神兽，能言，达于万物之情。"
+  },
+  {
+    "id": "pi-xiu",
+    "province": "四川",
+    "original_text": "有兽焉，其状如豹而长尾，人首而牛耳，一目，名曰貔貅，是食人。"
+  },
+  {
+    "id": "suan-ni",
+    "province": "山西",
+    "original_text": "有兽焉，其状如麋，其州在尾上，名曰狻猊，是食人。"
+  },
+  {
+    "id": "xie-zhi",
+    "province": "陕西",
+    "original_text": "东北荒中有兽如羊，一角，毛青，四足忠直，见人斗则触不直，闻人论则咋不正，名曰獬豸。"
+  },
+  {
+    "id": "tao-wu",
+    "province": "湖北",
+    "original_text": "有兽焉，其状如虎而犬毛，长二尺，人面，虎足，猪口牙，尾长一丈八尺，名曰梼杌，是食人。"
+  },
+  {
+    "id": "hun-dun",
+    "province": "江苏",
+    "original_text": "有兽焉，其状如犬，长毛，四足，似熊而无爪，有目而不见，有耳而不闻，名曰混沌。"
+  },
+  {
+    "id": "zhu-yan",
+    "province": "陕西",
+    "original_text": "有兽焉，其状如猿，而白首赤足，名曰朱厌，见则大兵。"
+  },
+  {
+    "id": "zheng",
+    "province": "四川",
+    "original_text": "有兽焉，其状如赤豹，五尾一角，其音如击石，其名曰狰。"
+  },
+  {
+    "id": "tian-gou",
+    "province": "陕西",
+    "original_text": "有兽焉，其状如狸而白首，名曰天狗，其音如榴榴，可以御凶。"
+  },
+  {
+    "id": "xuan-gui",
+    "province": "广东",
+    "original_text": "怪水出焉，而东流注于宪翼之水。其中多玄龟，其状如龟而鸟首虺尾，其名曰旋龟，其音如判木，佩之不聋，可以为底。"
+  },
+  {
+    "id": "luo-yu",
+    "province": "甘肃",
+    "original_text": "有鱼焉，其状如鲤，鱼身而鸟翼，苍文而白首赤喙，名曰蠃鱼，音如鸾，见则天下大旱。"
+  },
+  {
+    "id": "luan-niao",
+    "province": "山西",
+    "original_text": "有鸟焉，其状如翟而五采文，名曰鸾鸟，见则天下安宁。"
+  },
+  {
+    "id": "wen-yao-yu",
+    "province": "山东",
+    "original_text": "有鱼焉，其状如鲤，鱼身而鸟翼，苍文而白首赤喙，名曰文鳐鱼，音如鸾鸡，见则天下大穰。"
+  },
+  {
+    "id": "sheng-sheng",
+    "province": "广东",
+    "original_text": "有兽焉，其状如禺而白耳，伏行人走，其名曰狌狌，食之善走。"
+  },
+  {
+    "id": "lu-shu",
+    "province": "广东",
+    "original_text": "有兽焉，其状如马而白首，其文如虎而赤尾，其音如谣，其名曰鹿蜀，佩之宜子孙。"
+  },
+  {
+    "id": "qian-yang",
+    "province": "陕西",
+    "original_text": "有兽焉，其状如羊而马尾，名曰羬羊，其脂可以已腊。"
+  },
+  {
+    "id": "wu-qu",
+    "province": "陕西",
+    "original_text": "有鸟焉，其名曰螐渠，其状如山鸡，黑身赤足，可以已䐗。"
+  },
+  {
+    "id": "fei-teng",
+    "province": "陕西",
+    "original_text": "有蛇焉，名曰肥螣，六足四翼，见则天下大旱。"
+  },
+  {
+    "id": "hua-yu",
+    "province": "山西",
+    "original_text": "其中多滑鱼，其状如鱼，赤背，其音如梧，食之已疣，可以已痔。"
+  },
+  {
+    "id": "shui-ma",
+    "province": "山西",
+    "original_text": "其中多水马，其状如马，文臂牛尾，其音如呼，见则其国有大兵。"
+  },
+  {
+    "id": "jing-wei",
+    "province": "河北",
+    "original_text": "发鸠之山，其上多柘木。有鸟焉，其状如乌，文首，白喙，赤足，名曰精卫，其鸣自詨。是炎帝之少女，名曰女娃。女娃游于东海，溺而不返，故为精卫。常衔西山之木石，以堙于东海。"
+  },
+  {
+    "id": "kua-fu",
+    "province": "河北",
+    "original_text": "夸父与日逐走，入日；渴，欲得饮，饮于河、渭；河、渭不足，北饮大泽。未至，道渴而死。弃其杖，化为邓林。"
+  },
+  {
+    "id": "chi-you",
+    "province": "河北",
+    "original_text": "蚩尤作兵伐黄帝，黄帝乃令应龙攻之冀州之野。"
+  },
+  {
+    "id": "jiao-tu",
+    "province": "北京",
+    "original_text": "椒图，形似螺蚌，性好闭，故立于门铺首。"
+  },
+  {
+    "id": "bi-xi",
+    "province": "北京",
+    "original_text": "赑屃，形似龟，好负重，故立于碑下。"
+  },
+  {
+    "id": "chi-ru",
+    "province": "天津",
+    "original_text": "青丘之山……其中多赤鱬，其状如鱼而人面，其音如鸳鸯，食之不疥。"
+  },
+  {
+    "id": "bing-can",
+    "province": "内蒙古",
+    "original_text": "北方有大荒之山，其上有冰蚕，长七寸，黑色有鳞，以霜雪为食，吐五色丝，茧入水不濡，入火不燔。"
+  },
+  {
+    "id": "xuan-wu",
+    "province": "辽宁",
+    "original_text": "北方玄武，龟蛇合体，司水，主冬。"
+  },
+  {
+    "id": "fu-zhu",
+    "province": "吉林",
+    "original_text": "敖岸之山……有兽焉，其状如白鹿而四角，名曰夫诸，见则邑大水。"
+  },
+  {
+    "id": "fei-lian",
+    "province": "黑龙江",
+    "original_text": "飞廉，风伯也，鹿身，头如雀，有角，蛇尾豹文。"
+  },
+  {
+    "id": "yu-qiang",
+    "province": "黑龙江",
+    "original_text": "北海之渚中，有神，人面鸟身，珥两青蛇，践两青蛇，名曰禺彊。"
+  },
+  {
+    "id": "di-jiang",
+    "province": "上海",
+    "original_text": "天山……有神焉，其状如黄囊，赤如丹火，六足四翼，浑敦无面目，是识歌舞，实为帝江也。"
+  },
+  {
+    "id": "yu-yao",
+    "province": "上海",
+    "original_text": "东海之渚中，有神，人面鸟身，珥两黄蛇，践两黄蛇，名曰禺䝞。"
+  },
+  {
+    "id": "kui",
+    "province": "上海",
+    "original_text": "东海中有流波山，入海七千里。其上有兽，状如牛，苍身而无角，一足，出入水则必风雨，其光如日月，其声如雷，其名曰夔。"
+  },
+  {
+    "id": "bi-yi-niao",
+    "province": "浙江",
+    "original_text": "崇吾之山……有鸟焉，其状如凫，而一翼一目，相得乃飞，名曰蛮蛮，见则天下大水。"
+  },
+  {
+    "id": "hua-huai",
+    "province": "浙江",
+    "original_text": "尧光之山……有兽焉，其状如人而彘鬣，穴居而冬蛰，其名曰猾褢，其音如斫木，见则县有大繇。"
+  },
+  {
+    "id": "zhu-que",
+    "province": "安徽",
+    "original_text": "南方朱雀，鸟之长也，状如凤，五彩文，主火，司夏。"
+  },
+  {
+    "id": "bai-hu",
+    "province": "福建",
+    "original_text": "西方白虎，金神也，状如虎而白毛，主金，司秋。"
+  },
+  {
+    "id": "jue-ru",
+    "province": "福建",
+    "original_text": "柜山……有兽焉，其状如禺而有鬣，牛尾宛足马蹄，见则其国多疾，其名曰玃如。"
+  },
+  {
+    "id": "gou-chen",
+    "province": "江西",
+    "original_text": "勾陈，星神也，形如龙，主天地万物之纲纪，镇中央。"
+  },
+  {
+    "id": "kun-peng",
+    "province": "海南",
+    "original_text": "北冥有鱼，其名为鲲。鲲之大，不知其几千里也。化而为鸟，其名为鹏。"
+  },
+  {
+    "id": "kai-ming-shou",
+    "province": "海南",
+    "original_text": "昆仑南渊深三百仞。开明兽身大类虎而九首，皆人面，东向立昆仑上。"
+  },
+  {
+    "id": "ba-she",
+    "province": "重庆",
+    "original_text": "巴蛇食象，三岁而出其骨，君子服之，无心腹之疾。"
+  },
+  {
+    "id": "gu-diao",
+    "province": "贵州",
+    "original_text": "鹿吴之山……泽更之水出焉，而南流注于滂水。有兽焉，其状如雕而有角，其音如婴儿之音，是食人。"
+  },
+  {
+    "id": "xi-xi",
+    "province": "贵州",
+    "original_text": "鳛水出焉，而西流注于海。其中多鳛鳛之鱼，其状如鹊而十翼，鳞皆在羽端，其音如鹊，可以御火，食之不瘅。"
+  },
+  {
+    "id": "kong-que-ming-wang",
+    "province": "云南",
+    "original_text": "孔雀明王，形如孔雀，多首多臂，衔莲花，能息灾除难，护持众生。"
+  },
+  {
+    "id": "xue-yu-ling-shou",
+    "province": "西藏",
+    "original_text": "昆仑之西有雪域，其上有灵兽，白如雪，角如冰，踏雪无痕，见则国安。"
+  },
+  {
+    "id": "ye-cha",
+    "province": "西藏",
+    "original_text": "西方有夜叉之国，其神人面兽身，齿牙外露，能腾空食鬼，护佛法。"
+  },
+  {
+    "id": "qing-niao",
+    "province": "青海",
+    "original_text": "又西二百二十里，曰三危之山，三青鸟居之。"
+  },
+  {
+    "id": "yan-zi",
+    "province": "青海",
+    "original_text": "西海陼中，有神，人面鸟身，珥两青蛇，践两赤蛇，名曰弇兹。"
+  },
+  {
+    "id": "luo-tuo-shen",
+    "province": "宁夏",
+    "original_text": "流沙之西，有兽如驼，背有双峰，耐渴能负重，名曰骆驼神，为商旅之佑。"
+  },
+  {
+    "id": "sha-mo-jing-ling",
+    "province": "新疆",
+    "original_text": "流沙之外有大漠，中有精灵，形如人而非人，逐风沙而行，能引迷途。"
+  },
+  {
+    "id": "ying-zhao",
+    "province": "新疆",
+    "original_text": "槐江之山……实惟帝之平圃，神英招司之，其状马身而人面，虎文而鸟翼，徇于四海，其音如榴。"
+  },
+  {
+    "id": "lu-wu",
+    "province": "新疆",
+    "original_text": "昆仑之丘，是实惟帝之下都，神陆吾司之。其神状虎身而九尾，人面而虎爪。"
+  },
+  {
+    "id": "tu-lao",
+    "province": "新疆",
+    "original_text": "昆仑之丘……有兽焉，其状如羊而四角，名曰土蝼，是食人。"
+  },
+  {
+    "id": "qin-yuan",
+    "province": "新疆",
+    "original_text": "昆仑之丘……有鸟焉，其状如蜂，大如鸳鸯，名曰钦原，蠚鸟兽则死，蠚木则枯。"
+  },
+  {
+    "id": "jiao-ren",
+    "province": "台湾",
+    "original_text": "氐人国在建木西，其为人人面而鱼身，无足。"
+  },
+  {
+    "id": "jiao-long",
+    "province": "香港",
+    "original_text": "蛟，似蛇而四足，能兴云雨，居江湖渊潭之中。"
+  },
+  {
+    "id": "hai-huang-shou",
+    "province": "澳门",
+    "original_text": "南海之极有海皇兽，形如巨龟而九尾，镇海潮，司潮汐，见则海晏河清。"
+  },
+  {
+    "id": "dang-kang",
+    "province": "山东",
+    "original_text": "钦山……有兽焉，其状如豚而有牙，其名曰当康，其鸣自叫，见则天下大穰。"
+  },
+  {
+    "id": "pao-xiao",
+    "province": "河南",
+    "original_text": "钩吾之山……有兽焉，其状如羊身人面，其目在腋下，虎齿人爪，其音如婴儿，名曰狍鸮，是食人。"
+  },
+  {
+    "id": "ming-she",
+    "province": "河南",
+    "original_text": "鲜山……其中多鸣蛇，其状如蛇而四翼，其音如磬，见则其邑大旱。"
+  },
+  {
+    "id": "hua-she",
+    "province": "山西",
+    "original_text": "阳水……其中多化蛇，其状如人面而豺身，鸟翼而蛇行，其音如叱呼，见则其邑大水。"
+  },
+  {
+    "id": "zhu-jian",
+    "province": "山西",
+    "original_text": "单狐之山……有兽焉，其状如豹而长尾，人首而牛耳，一目，名曰诸犍，善吒，行则衔其尾，居则蟠其尾。"
+  },
+  {
+    "id": "dang-hu",
+    "province": "陕西",
+    "original_text": "有鸟焉，其状如雉，以其髯飞，食之不眴目，名曰当扈。"
+  },
+  {
+    "id": "tian-fei",
+    "province": "陕西",
+    "original_text": "太山……有兽焉，其状如牛而白首，一目而蛇尾，其名曰蜚，行水则竭，行草则死，见则天下大疫。"
+  },
+  {
+    "id": "qing-geng",
+    "province": "河南",
+    "original_text": "堇理之山……有鸟焉，其状如鹊，青身白喙，白目白尾，名曰青耕，可以御疫，其鸣自叫。"
+  },
+  {
+    "id": "zou-yu",
+    "province": "山西",
+    "original_text": "林氏国有珍兽，大若虎，五彩毕具，尾长于身，名曰驺虞，乘之日行千里。"
+  },
+  {
+    "id": "ji-meng",
+    "province": "河南",
+    "original_text": "光山……神计蒙处之，其状人身而龙首，恒游于漳渊，出入必有飘风暴雨。"
+  },
+  {
+    "id": "xing-tian",
+    "province": "河南",
+    "original_text": "刑天与帝至此争神，帝断其首，葬之常羊之山，乃以乳为目，以脐为口，操干戚以舞。"
+  },
+  {
+    "id": "xiang-liu",
+    "province": "河南",
+    "original_text": "共工之臣曰相柳氏，九首，以食于九土。相柳者，九首人面，蛇身而青。"
+  },
+  {
+    "id": "can-ma",
+    "province": "四川",
+    "original_text": "太古之时，有女誓曰嫁能迎马者，马迎女归，父杀马曝皮，皮卷女化为蚕，马首人身，是为蚕马。"
+  },
+  {
+    "id": "yu-shi-qie",
+    "province": "湖南",
+    "original_text": "雨师妾在其北，其为人黑，两手各操一蛇，左耳青蛇，右耳赤蛇。"
+  },
+  {
+    "id": "feng-bo",
+    "province": "湖北",
+    "original_text": "风伯名飞廉，鹿身雀首，蛇尾豹文，与雨师同佐黄帝，兴风云。"
+  },
+  {
+    "id": "yu-shi",
+    "province": "湖北",
+    "original_text": "雨师名屏翳，状如兽，苍身无角，能兴云雨，佐应龙以降雨。"
+  },
+  {
+    "id": "han-ba",
+    "province": "甘肃",
+    "original_text": "有人衣青衣，名曰黄帝女魃。蚩尤作兵伐黄帝……女魃不得复上，所居不雨。"
+  },
+  {
+    "id": "peng-she",
+    "province": "四川",
+    "original_text": "鲜山……朋蛇，其状如蛇，赤白二色，其音如铃，见则其邑大旱。"
+  },
+  {
+    "id": "hao-zhi",
+    "province": "陕西",
+    "original_text": "竹山……有兽焉，其状如豚而白毛，毛大如笄而黑端，名曰豪彘。"
+  },
+  {
+    "id": "xi-qu",
+    "province": "湖北",
+    "original_text": "厘山……有兽焉，其状如牛，苍身，其音如婴儿，是食人，其名曰犀渠。"
+  },
+  {
+    "id": "fei-shu",
+    "province": "山西",
+    "original_text": "天池之山……有兽焉，其状如兔而鼠首，以其背飞，其名曰飞鼠。"
+  },
+  {
+    "id": "yu-niao",
+    "province": "河南",
+    "original_text": "虢山……有鸟焉，其状如鼠而鸟翼，其音如羊，可以御兵，其名曰寓鸟。"
+  },
+  {
+    "id": "shan-gao",
+    "province": "河南",
+    "original_text": "苦山……有兽焉，其状如小猪，黄身白首，名曰山膏，善骂。"
+  },
+  {
+    "id": "wen-lin",
+    "province": "河南",
+    "original_text": "厘山……有兽焉，其状如彘，黄身白头，名曰闻獜，见则天下大风。"
+  },
+  {
+    "id": "lei-niao",
+    "province": "陕西",
+    "original_text": "翠山……其鸟多鸓，其状如鹊，赤黑而两足四翼，可以御火。"
+  },
+  {
+    "id": "jie-gou",
+    "province": "山东",
+    "original_text": "有鸟焉，其状如凫，鼠尾，善登木，其名曰絜钩，见则其国多疫。"
+  },
+  {
+    "id": "han-fu",
+    "province": "山东",
+    "original_text": "其中多䱤父之鱼，其状如鲋，鱼首彘身，食之已呕。"
+  },
+  {
+    "id": "duo-niao",
+    "province": "山东",
+    "original_text": "有鸟焉，其状如雉，而赤身，其名曰䲦鸟，食之已暴病。"
+  },
+  {
+    "id": "jiao-chong",
+    "province": "河南",
+    "original_text": "缟羝山……有神焉，其状如人而二首，名曰骄虫，是为螫虫，实惟蜂蜜之庐。"
+  },
+  {
+    "id": "min-niao",
+    "province": "甘肃",
+    "original_text": "符禺之山……其鸟多鴖，其状如翠而赤喙，可以御火。"
+  },
+  {
+    "id": "wo-yu",
+    "province": "山东",
+    "original_text": "䰀水出焉，而西流注于海。其中多䰀鱼，其状如鱼而鸟翼，出入有光，其音如鸳鸯，见则天下大旱。"
+  },
+  {
+    "id": "chang-you",
+    "province": "甘肃",
+    "original_text": "长右之山……有兽焉，其状如禺而四耳，其名长右，其音如吟，见则郡县大水。"
+  },
+  {
+    "id": "lei-jiu",
+    "province": "广东",
+    "original_text": "亶爰之山……有兽焉，其状如狸而有髦，其名曰类，自为牝牡，食者不妒。"
+  },
+  {
+    "id": "er-shu",
+    "province": "山西",
+    "original_text": "丹熏之山……有兽焉，其状如鼠，而菟首麋身，其音如獆犬，以其尾飞，名曰耳鼠，食之不睬，又可以御百毒。"
+  },
+  {
+    "id": "huan-shu",
+    "province": "山西",
+    "original_text": "带山……有兽焉，其状如马，一角有错，其名曰䑏疏，可以辟火。"
+  },
+  {
+    "id": "si",
+    "province": "广西",
+    "original_text": "兕在舜葬东，湘水南。其状如牛，苍黑，一角。"
+  }
+]

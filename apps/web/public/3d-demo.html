@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>九尾狐 3D 预览 · Draco 压缩演示</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(ellipse at center, #1a1d27 0%, #0f1117 100%);
+      color: #c9a96e;
+      font-family: "Noto Serif SC", "PingFang SC", serif;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .info-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 12px 24px;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .info-bar h1 {
+      font-size: 18px;
+      letter-spacing: 0.15em;
+      color: #c9a96e;
+    }
+    .info-bar .stats {
+      font-size: 13px;
+      color: #8b8680;
+      letter-spacing: 0.05em;
+    }
+    .info-bar .stats .highlight { color: #1DC981; font-weight: 600; }
+    #canvas-container {
+      width: 100vw;
+      height: 100vh;
+    }
+    #loading {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 50;
+    }
+    #loading .spinner {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      border: 3px solid rgba(201,169,110,0.2);
+      border-top-color: #c9a96e;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #loading p { font-size: 14px; color: #c9a96e; letter-spacing: 0.1em; }
+    #loading .pct { font-size: 12px; color: #8b8680; margin-top: 8px; }
+    #error {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 50;
+      color: #E8463A;
+      font-size: 16px;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="info-bar">
+    <h1>🦊 九尾狐 3D 模型 · Draco 压缩演示</h1>
+    <div class="stats">
+      原始: 47.6 MB → 压缩后: <span class="highlight">1.1 MB</span> (↓97.5%)
+    </div>
+  </div>
+  <div id="loading">
+    <div class="spinner"></div>
+    <p>九尾狐 加载中…</p>
+    <p class="pct" id="pct">0%</p>
+  </div>
+  <div id="error" style="display:none;"></div>
+  <div id="canvas-container"></div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    const container = document.getElementById('canvas-container');
+    const loadingEl = document.getElementById('loading');
+    const pctEl = document.getElementById('pct');
+    const errorEl = document.getElementById('error');
+
+    // 场景
+    const scene = new THREE.Scene();
+
+    // 相机
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0.5, 3);
+
+    // 渲染器
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    container.appendChild(renderer.domElement);
+
+    // 环境光照
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    // 灯光
+    const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+    scene.add(ambient);
+
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    dirLight.position.set(5, 8, 5);
+    dirLight.castShadow = true;
+    dirLight.shadow.mapSize.set(1024, 1024);
+    dirLight.shadow.camera.far = 20;
+    dirLight.shadow.camera.left = -5;
+    dirLight.shadow.camera.right = 5;
+    dirLight.shadow.camera.top = 5;
+    dirLight.shadow.camera.bottom = -5;
+    scene.add(dirLight);
+
+    const pointLight = new THREE.PointLight(0xc9a96e, 0.5, 20);
+    pointLight.position.set(-5, 2, -3);
+    scene.add(pointLight);
+
+    // 接触阴影（简化版：用一个暗色圆盘平面）
+    const shadowGeo = new THREE.CircleGeometry(1.5, 32);
+    const shadowMat = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      transparent: true,
+      opacity: 0.3,
+    });
+    const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
+    shadowMesh.rotation.x = -Math.PI / 2;
+    shadowMesh.position.y = -1.2;
+    scene.add(shadowMesh);
+
+    // 控件
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.enablePan = false;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.5;
+    controls.minDistance = 1.5;
+    controls.maxDistance = 6;
+    controls.minPolarAngle = Math.PI / 6;
+    controls.maxPolarAngle = Math.PI / 1.8;
+
+    // Draco 解码器
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+
+    // GLTF 加载器
+    const loader = new GLTFLoader();
+    loader.setDRACOLoader(dracoLoader);
+
+    // 使用完整 URL 避免路径问题
+    const modelUrl = window.location.origin + '/assets/models/jiu-wei-hu.glb';
+
+    loader.load(
+      modelUrl,
+      (gltf) => {
+        const model = gltf.scene;
+
+        // 自动缩放和居中
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 1.5 / maxDim;
+        model.scale.setScalar(scale);
+        model.position.sub(center.multiplyScalar(scale));
+
+        // 启用阴影
+        model.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+            if (child.material instanceof THREE.MeshStandardMaterial) {
+              child.material.envMapIntensity = 1.0;
+              child.material.needsUpdate = true;
+            }
+          }
+        });
+
+        scene.add(model);
+        loadingEl.style.display = 'none';
+      },
+      (progress) => {
+        if (progress.total > 0) {
+          const pct = Math.round((progress.loaded / progress.total) * 100);
+          pctEl.textContent = pct + '%';
+        }
+      },
+      (error) => {
+        console.error('Model load error:', error);
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        errorEl.textContent = '模型加载失败: ' + (error.message || '未知错误');
+      }
+    );
+
+    // 渲染循环
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // 窗口缩放
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

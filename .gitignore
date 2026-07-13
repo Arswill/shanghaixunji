@@ -1,0 +1,80 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+**/dist/
+.vite/
+**/.vite/
+.esbuild-tmp/
+**/.esbuild-tmp/
+
+# Old/backup code
+apps/web_old/
+**/node_modules.gone/
+**/node_modules.gone_pnpm/
+**/_nm_*/
+**/node_modules_*/
+**/_node_modules_*/
+**/_empty_tmp/
+
+# Environment
+.env
+.env.local
+**/.env.local
+
+# Large 3D model originals (not needed for deployment)
+apps/web/public/assets/models/originals/
+apps/web/public/assets/models/*.jpg
+
+# Pipeline outputs
+/pipelines/*/output/
+/assets/audio/
+/assets/images/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+coverage/
+.pytest_cache/
+
+# Temporary
+*.tmp
+*.log
+*.bak
+
+# Vercel
+.vercel/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Internal docs & AI tool traces
+docs/superpowers/
+.superpowers/
+competition/
+plans/
+trae-evidence/
+year-upgrade-plan/
+data/audits/
+design-philosoph-ink-resonance.md
+CLAUDE.md
+.claude/
+.cursor/
+.windsurf/
+
+# Temp scripts
+apps/web/render_qilin.cjs
+apps/web/render_qilin.js
+apps/web/run-all-tests.ps1
+

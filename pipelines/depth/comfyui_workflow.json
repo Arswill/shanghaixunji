@@ -1,0 +1,1 @@
+{"3":{"class_type":"LoadImage","inputs":{"image":"bi-fang.jpg"}},"5":{"class_type":"DepthAnythingV2","inputs":{"model":"depth_anything_v2_vitl.pth","images":["3",0]}},"9":{"class_type":"SaveImage","inputs":{"filename_prefix":"depth","images":["5",0]}}}

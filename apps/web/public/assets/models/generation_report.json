@@ -1,0 +1,15 @@
+{
+  "results": [
+    {
+      "id": "bi-fang",
+      "name": "毕方",
+      "success": false,
+      "output": null,
+      "error": "API错误 [SubmitHunyuanTo3DRapidJob]: ResourceInsufficient - 资源不足。",
+      "size_mb": 0,
+      "core": true
+    }
+  ],
+  "elapsed_sec": 0.3,
+  "timestamp": "2026-07-08 01:35:38"
+}

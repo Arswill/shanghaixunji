@@ -1,0 +1,5 @@
+dashscope>=1.20.0
+pydantic>=2.0
+pytest>=8.0
+pytest-cov
+python-dotenv>=1.0

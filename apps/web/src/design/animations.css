@@ -1,0 +1,352 @@
+/* 动画文件——从 index.css 拆分 */
+/* 包含所有 @keyframes 和 .animate-* 工具类 */
+
+/* ═══════════════════════════════════════════════════════════════
+   仙侠基础动画
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 仙气升腾 */
+@keyframes xian-rise {
+  0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
+  20% { opacity: 0.7; }
+  80% { opacity: 0.4; }
+  100% { transform: translateY(-100px) translateX(20px) scale(1.4); opacity: 0; }
+}
+.animate-xian-rise {
+  animation: xian-rise 5s ease-out infinite;
+}
+
+/* 御剑飞行 */
+@keyframes sword-fly {
+  0% { transform: translateX(-100px) translateY(0) rotate(-5deg); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translateX(50vw) translateY(-15px) rotate(0deg); }
+  80% { opacity: 0.7; }
+  100% { transform: translateX(110vw) translateY(5px) rotate(5deg); opacity: 0; }
+}
+.animate-sword-fly {
+  animation: sword-fly 6s var(--ease-flying) infinite;
+}
+
+/* 仙雾飘渺 */
+@keyframes mist-drift {
+  0%, 100% { transform: translateX(-5%) translateY(0) scale(1); opacity: 0.5; }
+  50% { transform: translateX(5%) translateY(-10px) scale(1.05); opacity: 0.75; }
+}
+.animate-mist-drift {
+  animation: mist-drift 8s var(--ease-mist) infinite;
+}
+
+/* 祥云缓动 */
+@keyframes cloud-float {
+  0% { transform: translateX(-10%) translateY(0); }
+  50% { transform: translateX(10%) translateY(-15px); }
+  100% { transform: translateX(-10%) translateY(0); }
+}
+.animate-cloud-float {
+  animation: cloud-float 12s var(--ease-mist) infinite;
+}
+
+/* 紫电 */
+@keyframes thunder-flash {
+  0%, 100% { opacity: 0; }
+  10%, 30% { opacity: 0.9; }
+  20%, 40% { opacity: 0.2; }
+  50%, 70% { opacity: 0.7; }
+  60% { opacity: 0.1; }
+}
+.animate-thunder-flash {
+  animation: thunder-flash 2s var(--ease-thunder) infinite;
+}
+
+/* 法阵旋转 */
+@keyframes rune-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-rune-rotate {
+  animation: rune-rotate 20s linear infinite;
+}
+.animate-rune-rotate-reverse {
+  animation: rune-rotate 20s linear infinite reverse;
+}
+
+/* 法阵脉动 */
+@keyframes rune-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+.animate-rune-pulse {
+  animation: rune-pulse 3s var(--ease-thunder) infinite;
+}
+
+/* 符箓展开 */
+@keyframes talisman-unfurl {
+  0% { clip-path: inset(0 50% 0 50%); opacity: 0; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+.animate-talisman-unfurl {
+  animation: talisman-unfurl 1.5s var(--ease-talisman) forwards;
+}
+
+/* 桃花飘落 */
+@keyframes petal-fall {
+  0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.9; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(110vh) translateX(80px) rotate(720deg); opacity: 0; }
+}
+.animate-petal-fall {
+  animation: petal-fall 8s linear infinite;
+}
+
+/* 玉光流转 */
+@keyframes jade-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-jade-shimmer {
+  background: linear-gradient(120deg, var(--jade-cui-light) 0%, var(--jade-cui) 25%, var(--jade-cui-deep) 50%, var(--jade-cui) 75%, var(--jade-cui-light) 100%);
+  background-size: 200% 100%;
+  animation: jade-shimmer 4s var(--ease-mist) infinite;
+}
+
+/* 仙金闪烁 */
+@keyframes gold-shimmer {
+  0%, 100% { opacity: 0.4; filter: brightness(1); }
+  50% { opacity: 0.9; filter: brightness(1.2); }
+}
+.animate-gold-shimmer {
+  animation: gold-shimmer 3s var(--ease-mist) infinite;
+}
+
+/* 星辰明灭 */
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.animate-star-twinkle {
+  animation: star-twinkle 4s var(--ease-mist) infinite;
+}
+
+/* 仙光渐现 */
+@keyframes xian-fade-in {
+  0% { opacity: 0; filter: blur(12px) brightness(2); transform: scale(0.95); }
+  60% { opacity: 0.8; filter: blur(2px) brightness(1.2); }
+  100% { opacity: 1; filter: blur(0) brightness(1); transform: scale(1); }
+}
+.animate-xian-fade-in {
+  animation: xian-fade-in 1s var(--ease-xian) forwards;
+}
+
+/* 仙气浮游 */
+@keyframes xian-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+.animate-xian-float {
+  animation: xian-float 5s var(--ease-mist) infinite;
+}
+
+/* 3D 预览加载旋转光圈 */
+@keyframes creature3d-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   兼容旧水墨动画（保留兼容）
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes ink-splash {
+  0% { transform: scale(0); opacity: 0; filter: blur(20px); }
+  60% { transform: scale(1.08); opacity: 1; filter: blur(2px); }
+  100% { transform: scale(1); opacity: 1; filter: blur(0); }
+}
+.animate-ink-splash {
+  animation: ink-splash 0.8s var(--ease-xian) forwards;
+}
+
+@keyframes ink-bird-fly {
+  0% { transform: translate(-5%, 0) scale(var(--bird-scale, 0.5)) rotate(-2deg); }
+  25% { transform: translate(25vw, -15px) scale(var(--bird-scale, 0.5)) rotate(0deg); }
+  50% { transform: translate(55vw, -5px) scale(var(--bird-scale, 0.5)) rotate(2deg); }
+  75% { transform: translate(80vw, -20px) scale(var(--bird-scale, 0.5)) rotate(0deg); }
+  100% { transform: translate(105vw, 0) scale(var(--bird-scale, 0.5)) rotate(-2deg); }
+}
+
+@keyframes brush-write {
+  0% { clip-path: inset(0 100% 0 0); opacity: 0; }
+  60% { clip-path: inset(0 0 0 0); opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+.animate-brush-write {
+  animation: brush-write 1.5s var(--ease-xian) forwards;
+}
+
+@keyframes seal-stamp {
+  0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+  60% { transform: scale(1.15) rotate(-5deg); opacity: 0.95; }
+  100% { transform: scale(1) rotate(-6deg); opacity: 1; }
+}
+.animate-seal-stamp {
+  animation: seal-stamp 0.6s var(--ease-thunder) forwards;
+}
+
+@keyframes ink-line {
+  0% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 1; }
+}
+.animate-ink-line {
+  animation: ink-line 1s var(--ease-xian) forwards;
+  transform-origin: left center;
+}
+
+@keyframes ink-fade-in {
+  0% { opacity: 0; filter: blur(8px); transform: scale(0.97); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+.animate-ink-fade-in {
+  animation: ink-fade-in 0.7s var(--ease-xian) forwards;
+}
+
+.ink-stagger > * {
+  opacity: 0;
+  animation: ink-fade-in 0.6s var(--ease-xian) forwards;
+}
+.ink-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.ink-stagger > *:nth-child(2) { animation-delay: 0.25s; }
+.ink-stagger > *:nth-child(3) { animation-delay: 0.4s; }
+.ink-stagger > *:nth-child(4) { animation-delay: 0.55s; }
+.ink-stagger > *:nth-child(5) { animation-delay: 0.7s; }
+.ink-stagger > *:nth-child(6) { animation-delay: 0.85s; }
+
+@keyframes ink-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-ink-float {
+  animation: ink-float 4s var(--ease-mist) infinite;
+}
+
+@keyframes ink-breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.03); }
+}
+.animate-ink-breathe {
+  animation: ink-breathe 5s var(--ease-mist) infinite;
+}
+
+@keyframes gold-glimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+.animate-gold-glimmer {
+  animation: gold-glimmer 3s var(--ease-mist) infinite;
+}
+
+@keyframes scroll-unroll {
+  0% { clip-path: inset(0 50% 0 50%); opacity: 0; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+.animate-scroll-unroll {
+  animation: scroll-unroll 1.2s var(--ease-xian) forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s var(--ease-xian) forwards;
+}
+
+@keyframes fade-in-slow {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-slow {
+  animation: fade-in-slow 1.2s var(--ease-xian) forwards;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 3s var(--ease-mist) infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes gold-flash {
+  0% { opacity: 0; transform: scale(0.5); filter: brightness(2) blur(10px); }
+  40% { opacity: 1; transform: scale(1.05); filter: brightness(1.5) blur(2px); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1) blur(0px); }
+}
+.animate-gold-flash {
+  animation: gold-flash 1.5s var(--ease-xian) forwards;
+}
+
+@keyframes mist-clear {
+  0% { opacity: 0; filter: blur(30px); }
+  100% { opacity: 1; filter: blur(0px); }
+}
+.animate-mist-clear {
+  animation: mist-clear 1.5s var(--ease-mist) forwards;
+}
+
+@keyframes bronze-gate {
+  0% { clip-path: inset(0 50% 0 50%); opacity: 0; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+.animate-bronze-gate {
+  animation: bronze-gate 1.2s var(--ease-xian) forwards;
+}
+
+@keyframes ink-spread {
+  0% { transform: scale(0.8); opacity: 0; filter: blur(20px); }
+  50% { opacity: 1; }
+  100% { transform: scale(1); opacity: 1; filter: blur(0px); }
+}
+.animate-ink-spread {
+  animation: ink-spread 1.2s var(--ease-mist) forwards;
+}
+
+@keyframes ember-rise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+.animate-ember-rise {
+  animation: ember-rise 4s ease-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 6s var(--ease-mist) infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.02); opacity: 1; }
+}
+.animate-breathe {
+  animation: breathe 4s var(--ease-mist) infinite;
+}
+
+/* 金光炸裂粒子 */
+@keyframes goldenBurst {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx, 0), var(--dy, 0)) scale(0); opacity: 0; }
+}

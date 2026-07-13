@@ -1,0 +1,20 @@
+[project]
+name = "shanhai-tts-pipeline"
+version = "0.1.0"
+description = "山海寻迹 Q1.3 - CosyVoice 构建期 TTS 管线（含方言映射）"
+requires-python = ">=3.10"
+dependencies = [
+    "dashscope>=1.20.0",
+    "pydantic>=2.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

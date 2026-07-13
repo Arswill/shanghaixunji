@@ -1,0 +1,175 @@
+{
+  "北京": [
+    "jiao-tu",
+    "bi-xi"
+  ],
+  "天津": [
+    "chi-ru"
+  ],
+  "河北": [
+    "jing-wei",
+    "kua-fu",
+    "chi-you"
+  ],
+  "山西": [
+    "qi-lin",
+    "suan-ni",
+    "luan-niao",
+    "hua-yu",
+    "shui-ma",
+    "hua-she",
+    "zhu-jian",
+    "zou-yu",
+    "fei-shu",
+    "er-shu",
+    "huan-shu"
+  ],
+  "内蒙古": [
+    "bing-can"
+  ],
+  "辽宁": [
+    "xuan-wu"
+  ],
+  "吉林": [
+    "fu-zhu"
+  ],
+  "黑龙江": [
+    "fei-lian",
+    "yu-qiang"
+  ],
+  "上海": [
+    "di-jiang",
+    "yu-yao",
+    "kui"
+  ],
+  "江苏": [
+    "hun-dun"
+  ],
+  "浙江": [
+    "bi-yi-niao",
+    "hua-huai"
+  ],
+  "安徽": [
+    "zhu-que"
+  ],
+  "福建": [
+    "bai-hu",
+    "jue-ru"
+  ],
+  "江西": [
+    "gou-chen"
+  ],
+  "山东": [
+    "bai-ze",
+    "wen-yao-yu",
+    "dang-kang",
+    "jie-gou",
+    "han-fu",
+    "duo-niao",
+    "wo-yu"
+  ],
+  "河南": [
+    "fei-fei",
+    "tao-tie",
+    "ying-long",
+    "pao-xiao",
+    "ming-she",
+    "qing-geng",
+    "ji-meng",
+    "xing-tian",
+    "xiang-liu",
+    "yu-niao",
+    "shan-gao",
+    "wen-lin",
+    "jiao-chong"
+  ],
+  "湖北": [
+    "tao-wu",
+    "feng-bo",
+    "yu-shi",
+    "xi-qu"
+  ],
+  "湖南": [
+    "jiu-wei-hu",
+    "yu-shi-qie"
+  ],
+  "广东": [
+    "jian",
+    "xuan-gui",
+    "sheng-sheng",
+    "lu-shu",
+    "lei-jiu"
+  ],
+  "广西": [
+    "jian",
+    "si"
+  ],
+  "海南": [
+    "kun-peng",
+    "kai-ming-shou"
+  ],
+  "重庆": [
+    "ba-she"
+  ],
+  "四川": [
+    "chu-shuo",
+    "pi-xiu",
+    "zheng",
+    "can-ma",
+    "peng-she"
+  ],
+  "贵州": [
+    "gu-diao",
+    "xi-xi"
+  ],
+  "云南": [
+    "kong-que-ming-wang"
+  ],
+  "西藏": [
+    "xue-yu-ling-shou",
+    "ye-cha"
+  ],
+  "陕西": [
+    "bi-fang",
+    "qiong-qi",
+    "xie-zhi",
+    "zhu-yan",
+    "tian-gou",
+    "qian-yang",
+    "wu-qu",
+    "fei-teng",
+    "dang-hu",
+    "tian-fei",
+    "hao-zhi",
+    "lei-niao"
+  ],
+  "甘肃": [
+    "luo-yu",
+    "han-ba",
+    "min-niao",
+    "chang-you"
+  ],
+  "青海": [
+    "qing-niao",
+    "yan-zi"
+  ],
+  "宁夏": [
+    "luo-tuo-shen"
+  ],
+  "新疆": [
+    "sha-mo-jing-ling",
+    "ying-zhao",
+    "lu-wu",
+    "tu-lao",
+    "qin-yuan"
+  ],
+  "台湾": [
+    "jiao-ren"
+  ],
+  "香港": [
+    "jiao-long"
+  ],
+  "澳门": [
+    "hai-huang-shou"
+  ]
+}
