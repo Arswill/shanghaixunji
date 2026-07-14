@@ -11,8 +11,10 @@ import { DialectPlayer } from './DialectPlayer'
 import type { CreatureWithAssets } from '../data/loadCreatures'
 import { has3DModel } from '../effects/creature-3d-manifest'
 
+// 有 3D 模型的精选神兽（首页轮换池）
 const FEATURED_IDS = [
   'jiu-wei-hu', 'ying-long', 'bi-fang', 'qi-lin', 'kun-peng', 'zhu-que',
+  'bai-hu', 'bai-ze', 'xuan-wu', 'qiong-qi', 'xing-tian', 'tao-tie',
 ] as const
 
 interface HeroCreatureSectionProps {
@@ -26,7 +28,7 @@ export function HeroCreatureSection({ onExplore, goCreature, setInitialMessage }
   const guardianProvince = useGuardianStore((s) => s.province)
   const [input, setInput] = useState('')
 
-  // 神兽选择逻辑（混合策略）— 首页优先展示有 3D 模型的神兽
+  // 神兽选择逻辑（混合策略）— 首页只展示有 3D 模型的神兽
   const creaturePool = useMemo(() => {
     const toCreature = (ids: string[]) =>
       ids.map(id => creatures.find(c => c.id === id)).filter(Boolean) as CreatureWithAssets[]
@@ -45,27 +47,19 @@ export function HeroCreatureSection({ onExplore, goCreature, setInitialMessage }
       }
     }
 
-    // 优先级2：节气推荐神兽（不论是否有 3D 模型，确保节气相关性）
+    // 优先级2：节气推荐中有 3D 模型的神兽
     const seasonIds = getCurrentSeasonCreatureIds()
-    if (seasonIds.length > 0) {
-      const seasonCreatures = toCreature(seasonIds)
-      // 有 3D 的排前面，无 3D 的也能展示（用 2D 画像）
-      const with3d = seasonCreatures.filter(c => has3DModel(c.id))
-      const without3d = seasonCreatures.filter(c => !has3DModel(c.id))
-      if (with3d.length > 0 || without3d.length > 0) {
-        return [...with3d, ...without3d]
-      }
-    }
+    const seasonWith3d = seasonIds.filter(id => has3DModel(id))
+    if (seasonWith3d.length > 0) return toCreature(seasonWith3d)
 
-    // 优先级3：固定推荐（全都有 3D 模型）
+    // 优先级3：精选推荐（全都有 3D 模型，12只轮换）
     return toCreature([...FEATURED_IDS])
   }, [guardianProvince, discovered])
 
-  // 随机初始索引，避免每次打开都是同一只神兽
+  // 基于日期的轮换初始索引——每天看到不同神兽，同一天内稳定
   const [currentIndex, setCurrentIndex] = useState(() => {
-    // 基于当日日期生成稳定的随机数（同一天打开看到同一只，第二天换一只）
     const dayOfYear = Math.floor(Date.now() / (1000 * 60 * 60 * 24))
-    return dayOfYear % 6 // FEATURED_IDS 有 6 只，取模轮换
+    return dayOfYear % FEATURED_IDS.length
   })
 
   const currentCreature = creaturePool[currentIndex] ?? creaturePool[0]
