@@ -66,18 +66,6 @@ export function getDialectAudioUrl(creatureId: string, province: string): string
   return `/assets/audio/${creatureId}__${province}.mp3`
 }
 
-/** 预生成方言 Demo 音频路径映射（向后兼容） */
-const DEMO_AUDIO_MAP: Record<string, string> = {
-  'bi-fang': '/assets/audio/bi-fang_demo.mp3',
-  'jiu-wei-hu': '/assets/audio/jiu-wei-hu_demo.mp3',
-  'xuan-gui': '/assets/audio/xuan-gui_demo.mp3',
-}
-
-/** 获取预生成的方言 Demo 音频 URL */
-export function getDemoAudioUrl(creatureId: string): string | null {
-  return DEMO_AUDIO_MAP[creatureId] ?? null
-}
-
 /** TTS 请求参数 */
 export interface TTSRequest {
   text: string
@@ -87,7 +75,7 @@ export interface TTSRequest {
 
 /** TTS 响应 */
 export interface TTSResult {
-  /** 音频 URL（来自 DashScope 或预生成文件） */
+  /** 音频 URL（来自 DashScope 或预生成文件），空字符串表示无音频需走 Web Speech */
   audioUrl: string
   /** 方言显示名 */
   dialectLabel: string
@@ -96,23 +84,46 @@ export interface TTSResult {
 }
 
 /**
+ * 验证音频 URL 是否真的可播放（HEAD 请求检查 Content-Type）
+ * 防止 SPA 路由把 404 返回为 HTML 导致 Audio 元素静默失败
+ */
+async function validateAudioUrl(url: string): Promise<boolean> {
+  try {
+    const resp = await fetch(url, { method: 'HEAD', redirect: 'follow' })
+    if (!resp.ok) return false
+    const contentType = resp.headers.get('Content-Type') || ''
+    // 音频文件应该是 audio/* 或 application/octet-stream
+    // 排除 text/html（SPA fallback 返回的 index.html）
+    if (contentType.includes('text/html')) return false
+    if (contentType.startsWith('audio/')) return true
+    if (contentType.includes('octet-stream')) return true
+    // 未知类型也尝试播放（有些服务器不返回正确的 Content-Type）
+    return resp.ok
+  } catch {
+    return false
+  }
+}
+
+/**
  * 调用方言 TTS 服务
  *
  * 优先级：
- * 1. 预生成方言音频（V2 格式 {creatureId}__{province}.mp3，真实方言语音）
+ * 1. 预生成方言音频（V2 格式 {creatureId}__{province}.mp3）— 验证文件存在且为音频
  * 2. /api/tts 代理调用 DashScope CosyVoice（实时生成）
- * 3. Web Speech API 回退（浏览器内置 TTS，无方言效果）
- *
- * 注意：旧的 _demo.mp3 文件为普通话生成，已弃用，优先使用方言专用音频。
+ * 3. Web Speech API 回退（浏览器内置 TTS，普通话）
  */
 export async function speakDialect(req: TTSRequest): Promise<TTSResult> {
   const dialectLabel = getDialectLabel(req.province)
 
-  // 1. 预生成方言音频（V2 格式：{creatureId}__{province}.mp3）
+  // 1. 预生成方言音频 — 先验证文件是否真的存在且可播放
   if (req.creatureId && req.province) {
     const dialectUrl = getDialectAudioUrl(req.creatureId, req.province)
     if (dialectUrl) {
-      return { audioUrl: dialectUrl, dialectLabel, isDemo: true }
+      const isValid = await validateAudioUrl(dialectUrl)
+      if (isValid) {
+        return { audioUrl: dialectUrl, dialectLabel, isDemo: true }
+      }
+      console.info(`[TTS] 预生成音频不可用: ${dialectUrl}，尝试实时生成`)
     }
   }
 
@@ -138,15 +149,19 @@ export async function speakDialect(req: TTSRequest): Promise<TTSResult> {
   }
 
   // 3. Web Speech API 回退（无方言效果，仅普通话）
-  return { audioUrl: '', dialectLabel: '普通话', isDemo: false }
+  return { audioUrl: '', dialectLabel, isDemo: false }
 }
 
 /**
  * 播放音频 URL，返回可控制的 Audio 元素
+ * 播放失败时调用 onError 回调
  */
-export function playAudioUrl(url: string): HTMLAudioElement {
+export function playAudioUrl(url: string, onError?: () => void): HTMLAudioElement {
   const audio = new Audio(url)
-  audio.play().catch((e) => console.warn('[TTS] 音频播放失败:', e))
+  audio.play().catch((e) => {
+    console.warn('[TTS] 音频播放失败:', e)
+    onError?.()
+  })
   return audio
 }
 

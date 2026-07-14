@@ -1,14 +1,17 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
+import { getDialectLabel } from '../tts/cosyvoice'
 
 interface AudioPlayerProps {
   audioUrl: string | null
   originalText: string
+  province: string
 }
 
-export function AudioPlayer({ audioUrl, originalText }: AudioPlayerProps) {
+export function AudioPlayer({ audioUrl, originalText, province }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null)
+  const dialectLabel = getDialectLabel(province)
 
   const handlePlay = useCallback(() => {
     if (audioUrl) return // native audio element handles this
@@ -50,14 +53,14 @@ export function AudioPlayer({ audioUrl, originalText }: AudioPlayerProps) {
     }
   }, [])
 
-  // Native audio file available (edge-tts Mandarin reading)
+  // Native audio file available
   if (audioUrl) {
     return (
       <div data-testid="audio-player" className="celestial-card p-4 sm:p-5">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-immortal-gold text-base">🔊</span>
           <span className="text-immortal-gold-bright text-sm font-display tracking-wider">原文朗读</span>
-          <span className="text-ink-faint text-xs ml-auto">普通话</span>
+          <span className="text-ink-faint text-xs ml-auto">{dialectLabel}</span>
         </div>
         <audio controls preload="none" className="w-full" data-testid="native-audio">
           <source src={audioUrl} type="audio/mpeg" />
@@ -66,16 +69,16 @@ export function AudioPlayer({ audioUrl, originalText }: AudioPlayerProps) {
     )
   }
 
-  // Fallback: Web Speech API (Mandarin, not dialect)
+  // Fallback: Web Speech API
   return (
     <div data-testid="audio-player" className="celestial-card p-4 sm:p-5">
       <div className="flex items-center gap-2 mb-1">
         <span className="text-immortal-gold text-base">🔊</span>
         <span className="text-immortal-gold-bright text-sm font-display tracking-wider">古文朗读</span>
-        <span className="text-ink-faint text-xs ml-auto">普通话预览</span>
+        <span className="text-ink-faint text-xs ml-auto">{dialectLabel}预览</span>
       </div>
       <p className="text-ink-faint text-xs mb-3">
-        方言音频生成中，当前为普通话朗读预览
+        方言音频生成中，当前为浏览器语音朗读预览
       </p>
       {error && (
         <p className="text-cinnabar text-xs mb-2" role="alert">{error}</p>

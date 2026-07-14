@@ -372,6 +372,7 @@ export function CreatureDetail({ creatureId }: { creatureId: string }) {
         <AudioPlayer
           audioUrl={creature.audio}
           originalText={creature.original_text}
+          province={creature.province}
         />
       </section>
 
