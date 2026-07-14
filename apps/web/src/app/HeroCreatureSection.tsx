@@ -28,39 +28,37 @@ export function HeroCreatureSection({ onExplore, goCreature, setInitialMessage }
   const guardianProvince = useGuardianStore((s) => s.province)
   const [input, setInput] = useState('')
 
-  // 神兽选择逻辑（混合策略）— 首页只展示有 3D 模型的神兽
+  // 神兽选择逻辑（混合策略）— 首页优先节气神兽，无3D时显示2D画像
   const creaturePool = useMemo(() => {
     const toCreature = (ids: string[]) =>
       ids.map(id => creatures.find(c => c.id === id)).filter(Boolean) as CreatureWithAssets[]
 
-    // 优先级1：已定位家乡省，且该省有 3D 模型的神兽
+    // 优先级1：已定位家乡省的神兽
     if (guardianProvince) {
       const provinceCreatures = creatures.filter(c =>
         c.province === guardianProvince ||
         (guardianProvince === '两广' && (c.province === '广东' || c.province === '广西'))
       )
-      const with3d = provinceCreatures.filter(c => has3DModel(c.id))
-      if (with3d.length > 0) {
-        const discovered_ = with3d.filter(c => discovered.includes(c.id))
-        const undiscovered = with3d.filter(c => !discovered.includes(c.id))
-        return [...discovered_, ...undiscovered]
+      if (provinceCreatures.length > 0) {
+        const with3d = provinceCreatures.filter(c => has3DModel(c.id))
+        const without3d = provinceCreatures.filter(c => !has3DModel(c.id))
+        return [...with3d, ...without3d]
       }
     }
 
-    // 优先级2：节气推荐中有 3D 模型的神兽
+    // 优先级2：节气推荐神兽（不论是否有3D模型，无3D时显示2D画像）
     const seasonIds = getCurrentSeasonCreatureIds()
-    const seasonWith3d = seasonIds.filter(id => has3DModel(id))
-    if (seasonWith3d.length > 0) return toCreature(seasonWith3d)
+    if (seasonIds.length > 0) {
+      const seasonCreatures = toCreature(seasonIds)
+      if (seasonCreatures.length > 0) return seasonCreatures
+    }
 
     // 优先级3：精选推荐（全都有 3D 模型，12只轮换）
     return toCreature([...FEATURED_IDS])
   }, [guardianProvince, discovered])
 
-  // 基于日期的轮换初始索引——每天看到不同神兽，同一天内稳定
-  const [currentIndex, setCurrentIndex] = useState(() => {
-    const dayOfYear = Math.floor(Date.now() / (1000 * 60 * 60 * 24))
-    return dayOfYear % FEATURED_IDS.length
-  })
+  // 初始索引：节气神兽池通常只有1-2只，从0开始；精选池按日期轮换
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const currentCreature = creaturePool[currentIndex] ?? creaturePool[0]
 

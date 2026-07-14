@@ -16,6 +16,12 @@
   animation: xian-rise 5s ease-out infinite;
 }
 
+/* 画像轻浮 */
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
 /* 御剑飞行 */
 @keyframes sword-fly {
   0% { transform: translateX(-100px) translateY(0) rotate(-5deg); opacity: 0; }

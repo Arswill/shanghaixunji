@@ -18,6 +18,7 @@ import { EntranceAnimator } from './EntranceAnimator'
 import { CreatureIdle } from './CreatureIdle'
 import { createEntranceTimeline, type TimelineTargets } from './CinematicTimeline'
 import { useReducedMotion } from '../lib/useReducedMotion'
+import { creatures } from '../data/loadCreatures'
 
 // Draco 解码器
 useGLTF.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/')
@@ -427,25 +428,38 @@ export function CreatureCinematicViewer({ creatureId, creatureName }: CreatureCi
     setLoaded(false)
   }, [creatureId])
 
-  // 没有模型时的回退 UI
+  // 没有3D模型时的回退 UI — 显示2D画像
   if (!hasModel) {
+    const creature = creatures.find(c => c.id === creatureId)
+    const imageUrl = creature?.image
     return (
       <div
-        className="w-full h-full relative flex items-center justify-center"
+        className="w-full h-full relative flex items-center justify-center overflow-hidden"
         style={{
-          background: `linear-gradient(135deg, ${config.palette.background} 0%, #000 100%)`,
+          background: `radial-gradient(ellipse at center, ${config.palette.background} 0%, #000 100%)`,
         }}
       >
-        <div className="text-center space-y-4">
-          <div className="text-7xl" style={{ filter: `drop-shadow(0 0 20px ${config.palette.primary}50)` }}>
-            🐉
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={creatureName}
+            className="max-w-[80%] max-h-[80%] object-contain"
+            style={{
+              filter: `drop-shadow(0 0 30px ${config.palette.primary}60) drop-shadow(0 0 60px ${config.palette.background}80)`,
+              animation: reducedMotion ? 'none' : `gentle-float 6s ease-in-out infinite`,
+            }}
+          />
+        ) : (
+          <div className="text-center space-y-4">
+            <div className="text-7xl" style={{ filter: `drop-shadow(0 0 20px ${config.palette.primary}50)` }}>
+              🐉
+            </div>
+            <div className="space-y-1">
+              <p className="text-lg font-display" style={{ color: config.palette.primary }}>{creatureName}</p>
+              <p className="text-sm font-display opacity-60">尚未显形</p>
+            </div>
           </div>
-          <div className="space-y-1">
-            <p className="text-lg font-display" style={{ color: config.palette.primary }}>{creatureName}</p>
-            <p className="text-sm font-display opacity-60">尚未显形</p>
-            <p className="text-xs opacity-40">探索地图发现更多线索</p>
-          </div>
-        </div>
+        )}
       </div>
     )
   }
