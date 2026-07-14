@@ -404,7 +404,7 @@ export function EncounterOverlay({ creature, isNewDiscovery, onComplete, onSkip 
           <div className="mb-8 min-h-[80px] flex items-center justify-center">
             <div className="relative px-8 py-6 max-w-xl">
               <div className="absolute inset-0 celestial-card opacity-30" />
-              <p className="relative font-display text-celestial-white text-lg md:text-xl leading-relaxed font-brush tracking-wider">
+              <p className="relative font-display text-ink-heaven text-lg md:text-xl leading-relaxed font-brush tracking-wider">
                 {displayed}
                 {!isDone && <span className="animate-pulse text-immortal-gold">▊</span>}
               </p>
@@ -463,7 +463,7 @@ export function EncounterOverlay({ creature, isNewDiscovery, onComplete, onSkip 
                 {creature.name}
               </h2>
             </div>
-            <p className="text-celestial-white/80 text-sm font-display tracking-wider">
+            <p className="text-ink-deep/80 text-sm font-display tracking-wider">
               {creature.pinyin} · {creature.source}
             </p>
             {isNewDiscovery ? (
@@ -475,7 +475,7 @@ export function EncounterOverlay({ creature, isNewDiscovery, onComplete, onSkip 
                 ✦ 渡劫成功 · 新收 {xianRarity.label}级神兽 ✦
               </p>
             ) : (
-              <p className="text-celestial-white/70 text-sm font-display" data-testid="already-discovered">
+              <p className="text-ink-dan text-sm font-display" data-testid="already-discovered">
                 此神兽已收录于图录
               </p>
             )}
@@ -502,7 +502,7 @@ export function EncounterOverlay({ creature, isNewDiscovery, onComplete, onSkip 
 
         {/* Skip hint */}
         {!showName && (
-          <p className="absolute bottom-4 left-0 right-0 text-celestial-white/50 text-xs text-center font-display tracking-wider">
+          <p className="absolute bottom-4 left-0 right-0 text-ink-dan/60 text-xs text-center font-display tracking-wider">
             ✦ 点击屏幕或按 Esc 键跳过 ✦
           </p>
         )}

@@ -11,11 +11,17 @@ export default {
           raised: '#242017',     /* = --celestial-white */
           night: '#050810',      /* = --celestial-night */
         },
+        /* ── 卷轴底色 (Scroll) — 用于输入框/tooltip背景 ── */
+        scroll: {
+          deep: '#15120c',       /* 卷轴深色背景 */
+          DEFAULT: '#1f1c16',    /* 卷轴标准背景 */
+          light: '#2a2418',      /* 卷轴浅色背景 */
+        },
         /* ── 仙墨 (Immortal Ink) — 暗色翻转：深底浅字 ── */
         ink: {
           primary: '#d8c9a8',    /* = --ink-zhong 主文字 */
-          muted: '#8a7d63',      /* = --ink-dan 次文字 */
-          faint: '#5a5040',      /* = --ink-light 辅助 */
+          muted: '#9a8d73',      /* = --ink-dan 次文字（提亮） */
+          faint: '#7a6e5a',      /* = --ink-light 辅助（提亮，确保WCAG对比度） */
           heaven: '#f0f5f1',     /* = --ink-heaven 最亮 */
           deep: '#d8e0e8',       /* = --ink-deep */
           zhong: '#d8c9a8',      /* = --ink-zhong */

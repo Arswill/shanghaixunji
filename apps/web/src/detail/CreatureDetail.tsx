@@ -345,7 +345,7 @@ export function CreatureDetail({ creatureId }: { creatureId: string }) {
                   ? 'bg-jade-cui/20 text-jade-cui border border-jade-cui/40'
                   : creature.confidence === 'medium'
                     ? 'bg-immortal-gold/20 text-immortal-gold border border-immortal-gold/40'
-                    : 'bg-ink-faint/20 text-ink-faint border border-ink-faint/40'
+                    : 'bg-ink-muted/20 text-ink-muted border border-ink-muted/40'
               }`}
             >
               {creature.confidence === 'high' ? '✦ 高置信度' : creature.confidence === 'medium' ? '✦ 中置信度' : '✦ 创意附会'}

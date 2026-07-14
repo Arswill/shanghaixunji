@@ -197,7 +197,7 @@ function moodBadgeClass(mood: string): string {
     case 'wary':
       return 'border-acc-cinnabar/60 text-acc-cinnabar bg-acc-cinnabar/10'
     case 'listless':
-      return 'border-ink-faint/60 text-ink-faint bg-ink-faint/10'
+      return 'border-ink-muted/60 text-ink-muted bg-ink-muted/10'
     default:
       return 'border-acc-jade/60 text-acc-jade bg-acc-jade/10'
   }

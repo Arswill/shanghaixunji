@@ -436,14 +436,14 @@ export function CreatureCinematicViewer({ creatureId, creatureName }: CreatureCi
       <div
         className="w-full h-full relative flex items-center justify-center overflow-hidden"
         style={{
-          background: `radial-gradient(ellipse at center, ${config.palette.primary}15 0%, ${config.palette.background} 60%, #000 100%)`,
+          background: `radial-gradient(ellipse at center, ${config.palette.primary}25 0%, ${config.palette.background}aa 50%, #000 100%)`,
         }}
       >
         {/* 光环背光 */}
         <div
-          className="absolute w-[60%] h-[60%] rounded-full blur-3xl"
+          className="absolute w-[70%] h-[70%] rounded-full blur-3xl"
           style={{
-            background: `radial-gradient(circle, ${config.palette.primary}30 0%, transparent 70%)`,
+            background: `radial-gradient(circle, ${config.palette.primary}40 0%, transparent 70%)`,
           }}
         />
         {imageUrl ? (
@@ -452,9 +452,9 @@ export function CreatureCinematicViewer({ creatureId, creatureName }: CreatureCi
             alt={creatureName}
             className="relative max-w-[75%] max-h-[75%] object-contain rounded-lg"
             style={{
-              filter: `drop-shadow(0 0 20px ${config.palette.primary}80) drop-shadow(0 0 40px ${config.palette.accent}40) brightness(1.1) contrast(1.1)`,
+              filter: `drop-shadow(0 0 25px ${config.palette.primary}90) drop-shadow(0 0 50px ${config.palette.accent}50) brightness(1.25) contrast(1.15)`,
               animation: reducedMotion ? 'none' : `gentle-float 6s ease-in-out infinite`,
-              boxShadow: `0 0 30px ${config.palette.primary}40`,
+              boxShadow: `0 0 40px ${config.palette.primary}50`,
             }}
           />
         ) : (
