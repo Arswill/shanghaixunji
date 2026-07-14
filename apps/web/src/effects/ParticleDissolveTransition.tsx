@@ -3,6 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { transitionVertexShader, transitionFragmentShader } from './transition-shader'
+import { WebGLContextGuard } from './WebGLContextGuard'
 
 interface ParticleDissolveTransitionProps {
   /** Called when the screen is fully covered — switch the underlying view here. */
@@ -201,6 +202,7 @@ export function ParticleDissolveTransition(props: ParticleDissolveTransitionProp
         gl={{ antialias: true, alpha: true }}
         style={{ width: '100%', height: '100%' }}
       >
+        <WebGLContextGuard />
         <DissolveScene {...props} />
       </Canvas>
     </div>

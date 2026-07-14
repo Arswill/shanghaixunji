@@ -72,6 +72,13 @@ export default defineConfig({
     globals: true,
     setupFiles: './src/test-setup.ts',
     css: true,
+    exclude: [
+      '**/node_modules/**',
+      '**/node_modules_old/**',
+      '**/node_modules.gone_pnpm/**',
+      '**/dist/**',
+      '**/.esbuild-tmp/**',
+    ],
   },
   esbuild: { target: 'esnext', logOverride: { 'this-is-undefined-in-esm': 'silent' } },
   build: {

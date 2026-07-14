@@ -14,6 +14,7 @@ dist/
 apps/web_old/
 **/node_modules.gone/
 **/node_modules.gone_pnpm/
+**/node_modules_old/
 **/_nm_*/
 **/node_modules_*/
 **/_node_modules_*/

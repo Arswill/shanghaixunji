@@ -28,6 +28,7 @@ import {
   Lightformer,
 } from '@react-three/drei'
 import * as THREE from 'three'
+import { WebGLContextGuard } from './WebGLContextGuard'
 
 // ──────────────────────────────────────────────
 // Draco 解码器全局配置
@@ -375,6 +376,7 @@ export function Creature3DPreview({
           gl.toneMappingExposure = 1.3
         }}
       >
+        <WebGLContextGuard />
         {/* 收敛灯光：主光 + 轮廓光，环境靠 HDRI */}
         <directionalLight
           position={[4, 6, 4]}

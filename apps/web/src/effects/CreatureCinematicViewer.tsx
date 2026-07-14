@@ -13,6 +13,7 @@ import { getCinematicConfig } from './creature-cinematic-config'
 import type { CinematicConfig } from './creature-cinematic-config'
 import { BackgroundScene } from './BackgroundScene'
 import { EnvEffect } from './EnvEffect'
+import { WebGLContextGuard } from './WebGLContextGuard'
 import { EntranceAnimator } from './EntranceAnimator'
 import { CreatureIdle } from './CreatureIdle'
 import { createEntranceTimeline, type TimelineTargets } from './CinematicTimeline'
@@ -480,6 +481,7 @@ export function CreatureCinematicViewer({ creatureId, creatureName }: CreatureCi
           gl.setClearColor(config.palette.background, 1)
         }}
       >
+        <WebGLContextGuard />
         <Suspense fallback={null}>
           <CinematicScene
             creatureId={creatureId}
