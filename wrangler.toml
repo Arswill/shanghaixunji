@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────────
+# Cloudflare Pages / Workers configuration — 山海寻迹
+# Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+# ─────────────────────────────────────────────────────────────────
+
+# Project name. On first deploy this becomes the <name>.pages.dev subdomain
+# (you can later attach a custom domain in the dashboard).
+name = "shanghaixunji"
+
+# Pin the runtime compatibility date. Using today's date enables the newest
+# Web API behaviour the shared module relies on (fetch, ReadableStream,
+# TextEncoder/TextDecoder, AbortSignal.timeout, Response.json, ...).
+compatibility_date = "2026-07-15"
+
+# Static assets are served from the Vite build output of the web app
+# (matches vercel.json -> outputDirectory).
+pages_build_output_dir = "apps/web/dist"
+
+# Enable Node.js compatibility so `api/_shared.ts` — which reads `process.env` —
+# runs unchanged inside the Workers runtime. (The Pages Function at
+# `functions/api/chat.ts` copies the Cloudflare bindings onto `process.env`.)
+# This is the canonical equivalent of "nodejs_compat = true".
+compatibility_flags = ["nodejs_compat"]
+
+# ── Non-secret variables (safe to commit; override in the dashboard) ──
+# Uncomment to pin a value instead of relying on the code defaults.
+#
+# [vars]
+# LLM_PROVIDER = "deepseek"        # optional: deepseek | mimo | dashscope
+# ALLOWED_ORIGIN = "*"              # default is "*" (see functions/api/chat.ts)
+
+# ── Secret keys ──────────────────────────────────────────────────────
+# NEVER place API keys here. Set them with the CLI:
+#   npx wrangler pages secret put MIMO_API_KEY
+#   npx wrangler pages secret put DEEPSEEK_API_KEY
+#   npx wrangler pages secret put DASHSCOPE_API_KEY
+# …or via the dashboard → Settings → Environment variables (encrypted).

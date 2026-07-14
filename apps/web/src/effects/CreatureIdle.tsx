@@ -25,10 +25,7 @@ export function CreatureIdle({ groupRef, baseY = 0, baseScale = 1, enabled, redu
     const pulse = 1 + Math.sin(t * 1.2) * 0.015
     groupRef.current.scale.setScalar(baseScale * pulse)
 
-    // 慢速自转（reducedMotion 时跳过）
-    if (!reducedMotion) {
-      groupRef.current.rotation.y += 0.002
-    }
+    // 慢速自转已移除 — 保持正面朝向用户
   })
 
   return null

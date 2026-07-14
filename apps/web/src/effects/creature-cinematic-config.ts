@@ -166,14 +166,14 @@ const SSR_CONFIGS: Record<string, SSRPartial> = {
     palette: { primary: '#ffa726', secondary: '#ff8a65', background: '#080608', accent: '#fff3e0' },
     scene: {
       theme: 'moonlit-peach-forest',
-      fogColor: '#2a1a20', fogDensity: 0.02,
-      farLayer: { geometry: 'mountain', color: '#3a2a30' },
-      midLayer: { geometry: 'forest', color: '#4a3a40' },
-      nearLayer: { geometry: 'void', color: '#1a1015' },
+      fogColor: '#0a0a0e', fogDensity: 0.015,
+      farLayer: { geometry: 'mountain', color: '#12121a' },
+      midLayer: { geometry: 'forest', color: '#1a1a22' },
+      nearLayer: { geometry: 'void', color: '#06060a' },
       lighting: {
-        ambient: { color: '#e8d5c4', intensity: 0.4 },
-        main: { color: '#fff3e0', intensity: 0.8, position: [3, 5, 2] },
-        rim: { color: '#ff8a65', intensity: 0.5, position: [-3, 2, -2] },
+        ambient: { color: '#c4d5e8', intensity: 0.3 },
+        main: { color: '#fff3e0', intensity: 1.2, position: [3, 5, 2] },
+        rim: { color: '#ffa726', intensity: 1.0, position: [-3, 2, -2] },
       },
     },
     entrance: {

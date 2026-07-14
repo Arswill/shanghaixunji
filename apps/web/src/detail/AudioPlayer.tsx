@@ -53,10 +53,12 @@ export function AudioPlayer({ audioUrl, originalText }: AudioPlayerProps) {
   // Native audio file available (edge-tts Mandarin reading)
   if (audioUrl) {
     return (
-      <div data-testid="audio-player" className="p-3 bg-bg-raised rounded border border-acc-bronze/30">
-        <p className="text-ink-muted text-sm mb-2">
-          <span className="text-acc-gold">原文朗读</span> · 普通话
-        </p>
+      <div data-testid="audio-player" className="celestial-card p-4 sm:p-5">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-immortal-gold text-base">🔊</span>
+          <span className="text-immortal-gold-bright text-sm font-display tracking-wider">原文朗读</span>
+          <span className="text-ink-faint text-xs ml-auto">普通话</span>
+        </div>
         <audio controls preload="none" className="w-full" data-testid="native-audio">
           <source src={audioUrl} type="audio/mpeg" />
         </audio>
@@ -66,24 +68,26 @@ export function AudioPlayer({ audioUrl, originalText }: AudioPlayerProps) {
 
   // Fallback: Web Speech API (Mandarin, not dialect)
   return (
-    <div data-testid="audio-player" className="p-3 bg-bg-raised rounded border border-acc-bronze/30">
-      <p className="text-ink-muted text-sm mb-1">
-        <span className="text-acc-gold">古文朗读</span> · 普通话预览
-      </p>
-      <p className="text-ink-faint text-xs mb-2">
+    <div data-testid="audio-player" className="celestial-card p-4 sm:p-5">
+      <div className="flex items-center gap-2 mb-1">
+        <span className="text-immortal-gold text-base">🔊</span>
+        <span className="text-immortal-gold-bright text-sm font-display tracking-wider">古文朗读</span>
+        <span className="text-ink-faint text-xs ml-auto">普通话预览</span>
+      </div>
+      <p className="text-ink-faint text-xs mb-3">
         方言音频生成中，当前为普通话朗读预览
       </p>
       {error && (
-        <p className="text-acc-cinnabar text-xs mb-2" role="alert">{error}</p>
+        <p className="text-cinnabar text-xs mb-2" role="alert">{error}</p>
       )}
       <div className="flex items-center gap-2">
         <button
           onClick={isPlaying ? handleStop : handlePlay}
           aria-label={isPlaying ? '停止朗读' : '播放朗读'}
-          className={`px-4 py-1.5 rounded text-sm transition-colors ${
+          className={`px-4 py-2 rounded-lg text-sm font-display tracking-wider transition-all ${
             isPlaying
-              ? 'bg-acc-cinnabar/30 text-acc-gold border border-acc-cinnabar/50'
-              : 'bg-acc-bronze/20 text-ink-primary border border-acc-bronze/40 hover:bg-acc-bronze/30'
+              ? 'bg-cinnabar/20 text-immortal-gold-bright border border-cinnabar/40'
+              : 'bg-celestial-fog/60 text-ink-heaven border border-immortal-gold/25 hover:border-immortal-gold/50 hover:bg-celestial-fog'
           }`}
         >
           {isPlaying ? '■ 停止' : '▶ 播放朗读'}

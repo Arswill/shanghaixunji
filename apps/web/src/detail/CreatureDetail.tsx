@@ -122,42 +122,42 @@ export function CreatureDetail({ creatureId }: { creatureId: string }) {
       {isSsr && <SsrThemePlayer creatureId={creature.id} isUnlocked={isDiscovered} />}
 
       {/* ── 顶部导航：仙侠题签 ── */}
-      <header className="sticky top-0 z-30 px-4 sm:px-6 py-2 flex items-center justify-between backdrop-blur-md bg-celestial-mist/70 border-b border-immortal-gold/15">
+      <header className="sticky top-0 z-30 px-4 sm:px-6 py-2.5 flex items-center justify-between backdrop-blur-xl bg-celestial-jade/80 border-b border-immortal-gold/25">
         <button
           type="button"
           onClick={() => goProvince(creature.province)}
-          className="text-ink-dan hover:text-cinnabar transition-colors text-sm flex items-center gap-1 font-display"
+          className="text-ink-dan hover:text-cinnabar transition-colors text-sm flex items-center gap-1.5 font-display px-3 py-1 rounded-lg hover:bg-celestial-fog/50"
         >
-          ← 返回{creature.province}
+          <span className="text-base">⟵</span> 返回{creature.province}
         </button>
-        <span className="text-xs text-ink-faint hidden sm:inline font-display tracking-wider">
+        <span className="text-xs text-ink-faint hidden sm:inline font-display tracking-[0.15em]">
           山海寻迹 · {creature.source}
         </span>
       </header>
 
       {/* ── 首屏：神兽仙家剧场 ── */}
       <section
-        className={`relative min-h-[68vh] flex flex-col items-center justify-end pb-12 pt-10 px-4 bg-gradient-to-b ${atmosphere.gradient}`}
+        className={`relative min-h-[68vh] flex flex-col items-center justify-end pb-12 pt-10 px-4 bg-gradient-to-b ${atmosphere.gradient} overflow-hidden`}
         style={{ backgroundImage: `${atmosphere.texture}` }}
       >
         {/* 仙气升腾 */}
-        <XianqiParticles count={28} />
+        <XianqiParticles count={20} />
 
         {/* 法阵背景 */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-          <RuneCircle size={320} animated color={atmosphere.rune} />
+        <div className="absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-60">
+          <RuneCircle size={280} animated color={atmosphere.rune} />
         </div>
 
         {/* 仙家印记 (右上) */}
         <div
-          className={`absolute top-24 right-4 sm:right-8 px-3 py-1.5 rounded-full border text-xs font-display tracking-widest backdrop-blur-md celestial-card ${atmosphere.seal}`}
+          className={`absolute top-20 right-4 sm:right-8 px-3 py-1.5 rounded-full border text-xs font-display tracking-widest backdrop-blur-md celestial-card ${atmosphere.seal}`}
         >
           ✦ {atmosphere.label} ✦
         </div>
 
         {/* 稀有度 (左上) */}
         <div
-          className={`absolute top-24 left-4 sm:left-8 flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg celestial-card ${rarityXian.glow}`}
+          className={`absolute top-20 left-4 sm:left-8 flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg celestial-card ${rarityXian.glow}`}
           style={{ color: rarityXian.color }}
         >
           <span className="text-base">{rarityXian.icon}</span>
@@ -165,10 +165,20 @@ export function CreatureDetail({ creatureId }: { creatureId: string }) {
         </div>
 
         {/* 神兽画像：占首屏主体 */}
-        <div className="relative z-10 w-full max-w-md aspect-[3/4] flex items-center justify-center">
+        <div className="relative z-10 w-full max-w-sm aspect-[3/4] flex items-center justify-center">
+          {/* 柔和光晕——降低亮度避免过曝光 */}
           <div
-            className="absolute inset-0 rounded-2xl opacity-50 blur-3xl"
+            className="absolute inset-0 rounded-2xl opacity-15 blur-3xl"
             style={{ background: rarityConfig.glow }}
+            aria-hidden="true"
+          />
+          {/* 画框内层暗色背板 */}
+          <div
+            className="absolute inset-0 rounded-2xl border border-immortal-gold/30"
+            style={{
+              background: 'linear-gradient(135deg, rgba(30,26,18,0.85) 0%, rgba(20,17,12,0.92) 100%)',
+              boxShadow: 'inset 0 0 40px rgba(0,0,0,0.5)',
+            }}
             aria-hidden="true"
           />
 
@@ -263,25 +273,25 @@ export function CreatureDetail({ creatureId }: { creatureId: string }) {
         </div>
 
         {/* 神兽名与拼音 (题签) */}
-        <div className="relative z-10 text-center mt-6">
+        <div className="relative z-10 text-center mt-5">
           {/* 印章盖在标题旁边 */}
-          <div className="flex items-center justify-center gap-4 mb-3">
-            <ImmortalSeal text="仙" size={56} />
-            <h2 className="font-brush text-5xl sm:text-6xl text-cinnabar tracking-[0.2em] text-glow-cinnabar">
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <ImmortalSeal text="仙" size={44} />
+            <h2 className="font-brush text-4xl sm:text-5xl text-cinnabar tracking-[0.15em] text-glow-cinnabar">
               {creature.name}
             </h2>
-            <ImmortalSeal text="瑞" size={56} rotation={6} />
+            <ImmortalSeal text="瑞" size={44} rotation={6} />
           </div>
-          <p className="text-ink-dan text-base tracking-widest font-display">{creature.pinyin}</p>
-          <div className="text-ink-faint text-xs mt-1.5 font-display tracking-wider">
+          <p className="text-ink-dan text-sm tracking-[0.3em] font-display">{creature.pinyin}</p>
+          <div className="text-ink-faint text-[11px] mt-1.5 font-display tracking-[0.2em]">
             {creature.source} · {creature.scroll}
           </div>
         </div>
       </section>
 
       {/* ── 悬浮快捷操作栏：仙家法器 ── */}
-      <div className="sticky top-0 z-20 -mt-8 mb-2 px-4">
-        <div className="max-w-2xl mx-auto flex items-center justify-center gap-2 p-2.5 rounded-2xl celestial-card !shadow-immortal overflow-x-auto">
+      <div className="sticky top-[44px] z-20 -mt-6 mb-3 px-4">
+        <div className="max-w-xl mx-auto flex items-center justify-center gap-1.5 p-2 rounded-2xl celestial-card !shadow-immortal overflow-x-auto border-immortal-gold/30">
           <XianAction icon="🔊" label="听声" testId="quick-audio" onClick={() => scrollTo(audioRef)} />
           <div className="flex items-center px-1">
             <CreatureAmbience personality={personality} />
@@ -321,7 +331,7 @@ export function CreatureDetail({ creatureId }: { creatureId: string }) {
         subtitle="RESEARCH & LOCATION"
         refProp={middleRef}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <EvolutionLockCard stage={evolutionStage} requiredStage={3} untilNext={untilNextEvolution} title="地望与考证">
             <p className="text-ink-heaven font-display leading-relaxed">
               {creature.modern_location}

@@ -30,9 +30,9 @@ export function CreatureTextCard({ creature, stage = 1, untilNext = 0 }: Creatur
   const isLocked = activeContent ? activeContent.requiredStage > stage : false
 
   return (
-    <div>
+    <div className="celestial-card p-5 sm:p-6">
       {/* Tab buttons */}
-      <div className="flex flex-wrap gap-2 mb-3 border-b border-acc-bronze/30 pb-2">
+      <div className="flex flex-wrap gap-1.5 mb-4 pb-3 border-b border-acc-bronze/20">
         {tabs.map((tab) => {
           const locked = tab.requiredStage > stage
           return (
@@ -40,12 +40,12 @@ export function CreatureTextCard({ creature, stage = 1, untilNext = 0 }: Creatur
               key={tab.id}
               onClick={() => !locked && setActiveTab(tab.id)}
               disabled={locked}
-              className={`px-3 py-1 text-sm rounded transition-colors ${
+              className={`px-3 py-1.5 text-xs rounded-lg transition-all font-display tracking-wider ${
                 activeTab === tab.id
-                  ? 'bg-acc-cinnabar/20 text-acc-gold border border-acc-cinnabar/50'
+                  ? 'bg-cinnabar/15 text-immortal-gold-bright border border-cinnabar/40 shadow-sm'
                   : locked
-                    ? 'text-ink-faint/50 cursor-not-allowed border border-transparent'
-                    : 'text-ink-muted hover:text-ink-primary border border-transparent'
+                    ? 'text-ink-faint/40 cursor-not-allowed border border-transparent'
+                    : 'text-ink-dan hover:text-ink-heaven border border-transparent hover:bg-celestial-fog/40'
               }`}
             >
               {tab.label}
@@ -56,22 +56,24 @@ export function CreatureTextCard({ creature, stage = 1, untilNext = 0 }: Creatur
       </div>
 
       {/* Active tab content */}
-      <div className="min-h-[120px]">
+      <div className="min-h-[100px]">
         {activeContent && !isLocked && (
           <div>
-            <p className="text-ink-primary leading-relaxed font-display">
+            <p className="text-ink-heaven leading-[1.9] font-display text-[15px]">
               {activeContent.content}
             </p>
             {activeContent.sub && (
-              <p className="text-ink-faint text-xs mt-2">{activeContent.sub}</p>
+              <p className="text-ink-faint text-xs mt-3 italic border-l-2 border-immortal-gold/20 pl-3">
+                {activeContent.sub}
+              </p>
             )}
             {activeTab === 'location' && (
-              <span className={`inline-block mt-2 text-xs px-2 py-0.5 rounded ${
-                creature.confidence === 'high' ? 'bg-acc-jade/20 text-acc-jade' :
-                creature.confidence === 'medium' ? 'bg-acc-bronze/20 text-acc-bronze' :
-                'bg-ink-faint/20 text-ink-faint'
+              <span className={`inline-block mt-3 text-xs px-2.5 py-1 rounded-md font-display ${
+                creature.confidence === 'high' ? 'bg-jade-cui/15 text-jade-cui-light border border-jade-cui/30' :
+                creature.confidence === 'medium' ? 'bg-immortal-gold/15 text-immortal-gold-bright border border-immortal-gold/30' :
+                'bg-ink-faint/15 text-ink-dan border border-ink-faint/30'
               }`}>
-                {creature.confidence === 'high' ? '高置信度' : creature.confidence === 'medium' ? '中置信度' : '创意附会'}
+                {creature.confidence === 'high' ? '✦ 高置信度' : creature.confidence === 'medium' ? '✦ 中置信度' : '✦ 创意附会'}
               </span>
             )}
           </div>

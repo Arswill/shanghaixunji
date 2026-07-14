@@ -66,14 +66,13 @@ export function CanvasMap({
 
   const pathGen = useMemo(() => geoPath(projection), [projection])
 
-  // Pre-compute projected paths
+  // Pre-compute feature list (names extracted once)
   const projectedFeatures = useMemo(() => {
     return features.map((f) => {
       const name = f.properties?.name ?? ''
-      const centroid = pathGen.centroid(f)
-      return { feature: f, name, centroid }
+      return { feature: f, name }
     })
-  }, [features, pathGen])
+  }, [features])
 
   // Render loop
   const render = useCallback(() => {
@@ -106,7 +105,7 @@ export function CanvasMap({
 
     const pg = geoPath(proj)
 
-    // Draw provinces
+    // ═══ Pass 1: Fill all provinces ═══
     for (const { feature, name } of projectedFeatures) {
       const pathStr = pg(feature)
       if (!pathStr) continue
@@ -114,7 +113,6 @@ export function CanvasMap({
       const isHover = hoveredProvince === name
       const style = getStyle(name, isHover)
 
-      ctx.beginPath()
       const p = new Path2D(pathStr)
       ctx.fillStyle = style.fillColor
       ctx.globalAlpha = style.fillOpacity
@@ -129,9 +127,19 @@ export function CanvasMap({
       }
 
       ctx.fill(p)
-      ctx.globalAlpha = 1
+    }
 
-      // Stroke
+    ctx.globalAlpha = 1
+
+    // ═══ Pass 2: Stroke all province borders ON TOP of fills ═══
+    for (const { feature, name } of projectedFeatures) {
+      const pathStr = pg(feature)
+      if (!pathStr) continue
+
+      const isHover = hoveredProvince === name
+      const style = getStyle(name, isHover)
+
+      const p = new Path2D(pathStr)
       ctx.strokeStyle = style.strokeColor
       ctx.lineWidth = style.strokeWidth
       ctx.globalAlpha = style.strokeOpacity
@@ -142,25 +150,66 @@ export function CanvasMap({
       }
       ctx.stroke(p)
       ctx.setLineDash([])
-      ctx.globalAlpha = 1
     }
+
+    ctx.globalAlpha = 1
 
     // Draw province labels — 印章式落款（古籍字体 + 朱砂色）
     const hoveredName = hoveredProvince
-    for (const { name, centroid } of projectedFeatures) {
-      const [cx, cy] = proj(centroid) ?? [0, 0]
+
+    // Helper: manually compute projected centroid from raw GeoJSON coords
+    const computeLabelPos = (feature: Feature<Geometry>): [number, number] | null => {
+      const geom = feature.geometry
+      if (!geom) return null
+      let coords: number[][] = []
+      if (geom.type === 'Polygon') {
+        coords = geom.coordinates[0] // outer ring
+      } else if (geom.type === 'MultiPolygon') {
+        // Use the largest polygon's outer ring
+        let largest = geom.coordinates[0][0]
+        for (const poly of geom.coordinates) {
+          if (poly[0].length > largest.length) largest = poly[0]
+        }
+        coords = largest
+      }
+      if (coords.length === 0) return null
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
+      for (const [lon, lat] of coords) {
+        const p = proj([lon, lat])
+        if (!p) continue
+        if (p[0] < minX) minX = p[0]
+        if (p[1] < minY) minY = p[1]
+        if (p[0] > maxX) maxX = p[0]
+        if (p[1] > maxY) maxY = p[1]
+      }
+      if (minX === Infinity) return null
+      return [(minX + maxX) / 2, (minY + maxY) / 2]
+    }
+
+    for (const { feature, name } of projectedFeatures) {
+      const pos = computeLabelPos(feature)
+      if (!pos) continue
+      const [cx, cy] = pos
+      if (isNaN(cx) || isNaN(cy)) continue
       if (cx < 0 || cx > w || cy < 0 || cy > h) continue
       const style = getStyle(name, false)
       const isDisc = style.fillOpacity > 0.7
       const isHover = hoveredName === name
 
-      ctx.font = isDisc ? "bold 13px 'ZCOOL XiaoWei', 'Noto Serif SC', serif" : "bold 12px 'ZCOOL XiaoWei', 'Noto Serif SC', serif"
+      ctx.font = isDisc ? "bold 14px 'ZCOOL XiaoWei', 'Noto Serif SC', serif" : "bold 13px 'ZCOOL XiaoWei', 'Noto Serif SC', serif"
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillStyle = isDisc ? 'rgba(139, 58, 42, 0.9)' : 'rgba(140, 120, 90, 0.85)'
+      // 文字描边 — 确保在任何背景上可读
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.85)'
+      ctx.lineWidth = 3.5
+      ctx.strokeText(name, cx, cy)
+      ctx.fillStyle = isDisc ? 'rgba(255, 213, 79, 1)' : 'rgba(230, 220, 180, 1)'
       if (isHover) {
-        ctx.fillStyle = 'rgba(255, 200, 80, 1)'
-        ctx.font = "bold 15px 'ZCOOL XiaoWei', 'Noto Serif SC', serif"
+        ctx.fillStyle = 'rgba(255, 240, 120, 1)'
+        ctx.font = "bold 16px 'ZCOOL XiaoWei', 'Noto Serif SC', serif"
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.9)'
+        ctx.lineWidth = 4
+        ctx.strokeText(name, cx, cy)
       }
       ctx.fillText(name, cx, cy)
     }

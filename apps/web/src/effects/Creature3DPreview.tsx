@@ -27,7 +27,6 @@ import {
   Environment,
   Lightformer,
 } from '@react-three/drei'
-import { EffectComposer, Bloom, Vignette, N8AO, SMAA } from '@react-three/postprocessing'
 import * as THREE from 'three'
 
 // ──────────────────────────────────────────────
@@ -216,17 +215,23 @@ function CreatureModel({ modelUrl }: { modelUrl: string }) {
     cloned.current = scene.clone(true)
   }
 
-  // 材质增强 — 保留原始 PBR 纹理，仅微调环境光响应
+  // 材质增强 — 自发光 + AdditiveBlending 模拟 Bloom 效果（替代 postprocessing）
   useEffect(() => {
     cloned.current?.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         child.castShadow = true
         child.receiveShadow = true
         if (child.material instanceof THREE.MeshStandardMaterial) {
-          child.material.envMapIntensity = 1.2
-          // 不覆盖原始 emissive，保留模型自带的纹理细节
-          child.material.roughness = Math.max(0.35, child.material.roughness)
-          child.material.metalness = Math.min(0.7, child.material.metalness)
+          child.material.envMapIntensity = 1.5
+          child.material.roughness = Math.max(0.3, child.material.roughness)
+          child.material.metalness = Math.min(0.65, child.material.metalness)
+          // 自发光增强：模拟 Bloom 效果
+          if (child.material.emissive) {
+            const origEmissive = child.material.emissive.clone()
+            const emissiveIntensity = child.material.emissiveIntensity || 0.3
+            child.material.emissive = origEmissive.multiplyScalar(1.5)
+            child.material.emissiveIntensity = Math.max(0.5, emissiveIntensity)
+          }
           child.material.needsUpdate = true
         }
       }
@@ -426,27 +431,18 @@ export function Creature3DPreview({
           minPolarAngle={Math.PI / 6}
           maxPolarAngle={Math.PI / 1.8}
         />
-
-        {/* 后处理：电影感三件套 */}
-        <EffectComposer multisampling={4} disableNormalPass>
-          <Bloom
-            luminanceThreshold={0.6}
-            luminanceSmoothing={0.85}
-            intensity={0.9}
-            mipmapBlur
-            radius={0.7}
-          />
-          <N8AO
-            aoRadius={0.6}
-            intensity={1.4}
-            distanceFalloff={0.6}
-            halfRes
-            color="#000000"
-          />
-          <Vignette offset={0.3} darkness={0.85} eskil={false} />
-          <SMAA />
-        </EffectComposer>
       </Canvas>
+
+      {/* CSS 暗角效果——替代 postprocessing Vignette */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)',
+          zIndex: 5,
+        }}
+      />
     </div>
   )
 }

@@ -5,7 +5,6 @@
 import { Suspense, useRef, useState, useEffect, useMemo } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useGLTF, ContactShadows, OrbitControls, Environment, Lightformer } from '@react-three/drei'
-import { EffectComposer, Bloom, Vignette, N8AO, SMAA } from '@react-three/postprocessing'
 import * as THREE from 'three'
 import gsap from 'gsap'
 
@@ -405,26 +404,6 @@ function CinematicScene({ creatureId, config, reducedMotion, onLoaded }: {
 
       {/* 接触阴影 */}
       <ContactShadows position={[0, -1.5, 0]} opacity={0.4} scale={5} blur={2} />
-
-      {/* 电影感后处理 */}
-      <EffectComposer multisampling={4} disableNormalPass>
-        <Bloom
-          luminanceThreshold={0.6}
-          luminanceSmoothing={0.85}
-          intensity={0.9}
-          mipmapBlur
-          radius={0.7}
-        />
-        <N8AO
-          aoRadius={0.6}
-          intensity={1.4}
-          distanceFalloff={0.6}
-          halfRes
-          color="#000000"
-        />
-        <Vignette offset={0.3} darkness={0.85} eskil={false} />
-        <SMAA />
-      </EffectComposer>
     </>
   )
 }

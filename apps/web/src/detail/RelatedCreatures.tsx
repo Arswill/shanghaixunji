@@ -38,22 +38,27 @@ export function RelatedCreatures({ creature, evolutionStage, goCreature }: Relat
   }
 
   return (
-    <section className="px-4 sm:px-6 py-10 border-t border-immortal-gold/20 max-w-5xl mx-auto">
-      <div className="flex items-center justify-center gap-3 mb-6">
-        <span className="ink-divider w-12" />
-        <h3 className="font-display text-xl text-ink-heaven tracking-[0.3em]">同门仙友</h3>
-        <span className="ink-divider w-12" />
+    <section className="px-4 sm:px-6 py-8 max-w-5xl mx-auto">
+      {/* 顶部金色分割线 */}
+      <div className="flex items-center gap-3 mb-5">
+        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-immortal-gold/30 to-immortal-gold/50" />
+        <span className="text-[9px] text-ink-faint tracking-[0.2em] font-display whitespace-nowrap">
+          RELATED IMMORTAL BEASTS
+        </span>
+        <div className="flex-1 h-px bg-gradient-to-l from-transparent via-immortal-gold/30 to-immortal-gold/50" />
       </div>
-      <p className="text-center text-ink-faint text-[10px] tracking-widest mb-6 font-display">
-        RELATED IMMORTAL BEASTS
-      </p>
+      <div className="flex items-center justify-center gap-3 mb-5">
+        <span className="ink-divider w-10" />
+        <h3 className="font-display text-lg text-ink-heaven tracking-[0.25em]">同门仙友</h3>
+        <span className="ink-divider w-10" />
+      </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {relatedCreatures.map((c) => (
           <button
             key={c.id}
             type="button"
             onClick={() => goCreature(c.id)}
-            className="group relative overflow-hidden rounded-xl celestial-card hover:!border-cinnabar transition-all duration-300 text-left"
+            className="group relative overflow-hidden rounded-xl celestial-card hover:!border-cinnabar/50 transition-all duration-300 text-left"
           >
             <div className="aspect-square overflow-hidden relative">
               {c.image ? (
@@ -71,13 +76,13 @@ export function RelatedCreatures({ creature, evolutionStage, goCreature }: Relat
                   {c.name.charAt(0)}
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-ink-heaven/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-celestial-jade/80 via-transparent to-transparent" />
             </div>
             <div className="p-2.5">
-              <p className="font-brush text-ink-heaven text-base truncate group-hover:text-cinnabar transition-colors">
+              <p className="font-brush text-ink-heaven text-base truncate group-hover:text-cinnabar-bright transition-colors">
                 {c.name}
               </p>
-              <p className="text-ink-dan text-[10px] truncate font-display">{c.province}</p>
+              <p className="text-ink-dan text-[10px] truncate font-display tracking-wider">{c.province}</p>
             </div>
           </button>
         ))}

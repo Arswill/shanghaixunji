@@ -72,14 +72,17 @@ export function XianAction({ icon, label, onClick, testId, accent }: XianActionP
       type="button"
       onClick={onClick}
       data-testid={testId}
-      className={`group flex flex-col items-center gap-1 px-3 sm:px-4 py-2 rounded-xl
-        celestial-card hover:!border-cinnabar transition-all duration-300 min-w-[72px]
-        ${accent ? 'ring-1 ring-cinnabar/40' : ''}`}
+      className={`group flex flex-col items-center gap-0.5 px-3 sm:px-3.5 py-1.5 rounded-xl
+        transition-all duration-300 min-w-[64px] relative
+        ${accent
+          ? 'bg-cinnabar/10 border border-cinnabar/30 hover:bg-cinnabar/20'
+          : 'hover:bg-celestial-fog/40'}
+      `}
     >
-      <span className="text-lg text-immortal-gold group-hover:scale-110 group-hover:text-cinnabar transition-all">
+      <span className="text-base text-immortal-gold group-hover:scale-110 group-hover:text-cinnabar-bright transition-all">
         {icon}
       </span>
-      <span className="text-[11px] text-ink-zhong group-hover:text-cinnabar font-display tracking-wider transition-colors">
+      <span className="text-[10px] text-ink-zhong group-hover:text-cinnabar-bright font-display tracking-wider transition-colors">
         {label}
       </span>
     </button>

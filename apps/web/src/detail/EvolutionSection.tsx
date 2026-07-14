@@ -47,21 +47,29 @@ export function EvolutionProgress({ stage, untilNext }: { stage: EvolutionStage;
   const config = EVOLUTION_CONFIG[stage]
   return (
     <div className="relative p-5 rounded-xl celestial-card overflow-hidden">
-      <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+        <div className="flex items-center gap-2.5">
           <span className="text-xl">{config.icon}</span>
-          <span className="font-display text-ink-heaven text-sm tracking-wider">{config.name}</span>
-          <span className="text-ink-dan text-xs">{config.description}</span>
+          <div>
+            <span className="font-display text-ink-heaven text-sm tracking-wider block">{config.name}</span>
+            <span className="text-ink-dan text-xs">{config.description}</span>
+          </div>
         </div>
-        <span className="text-immortal-gold text-xs font-display tracking-wider">
+        <span className="text-immortal-gold-bright text-xs font-display tracking-wider px-2.5 py-1 rounded-md bg-immortal-gold/10 border border-immortal-gold/25">
           {untilNext > 0 ? `再收录 ${untilNext} 只进阶` : '✦ 已达最高形态 ✦'}
         </span>
       </div>
-      <div className="h-1.5 bg-celestial-paper rounded-full overflow-hidden border border-immortal-gold/30">
+      <div className="h-2 bg-celestial-jade rounded-full overflow-hidden border border-immortal-gold/20">
         <div
-          className="h-full bg-gradient-to-r from-immortal-gold-deep via-immortal-gold to-immortal-gold-bright transition-all duration-700"
+          className="h-full rounded-full bg-gradient-to-r from-immortal-gold-deep via-immortal-gold to-immortal-gold-bright transition-all duration-700"
           style={{ width: stage === 3 ? '100%' : stage === 2 ? '66%' : '33%' }}
         />
+      </div>
+      {/* 阶段标记 */}
+      <div className="flex justify-between mt-1.5 text-[10px] text-ink-faint font-display tracking-wider">
+        <span className={stage >= 1 ? 'text-immortal-gold' : ''}>一阶</span>
+        <span className={stage >= 2 ? 'text-immortal-gold' : ''}>二阶</span>
+        <span className={stage >= 3 ? 'text-immortal-gold' : ''}>三阶</span>
       </div>
     </div>
   )

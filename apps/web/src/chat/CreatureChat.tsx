@@ -110,7 +110,7 @@ function AssistantMessage({
     <div className="flex gap-2 justify-start" data-testid={`chat-msg-${messageIndex}`}>
       {/* 神兽头像 */}
       <div
-        className="shrink-0 w-8 h-8 rounded-full overflow-hidden border border-acc-bronze/40 bg-bg-deep flex items-center justify-center"
+        className="shrink-0 w-9 h-9 rounded-lg overflow-hidden border border-immortal-gold/30 bg-celestial-jade flex items-center justify-center"
         data-testid={`chat-avatar-${messageIndex}`}
       >
         {creature.image ? (
@@ -120,7 +120,7 @@ function AssistantMessage({
             className="w-full h-full object-cover"
           />
         ) : (
-          <span className="font-display text-sm text-acc-gold">
+          <span className="font-brush text-sm text-immortal-gold-bright">
             {creature.name.charAt(0)}
           </span>
         )}
@@ -128,12 +128,12 @@ function AssistantMessage({
 
       <div className="flex flex-col gap-1 max-w-[80%]">
         {/* 打字机正文 */}
-        <div className="px-3 py-2 rounded-lg text-sm bg-bg-deep text-ink-muted font-display">
+        <div className="px-3.5 py-2.5 rounded-lg rounded-tl-sm text-sm bg-celestial-fog/60 text-ink-heaven font-display leading-relaxed border border-immortal-gold/15">
           {displayed}
           {!isDone && (
             <span
               data-testid="chat-typing-cursor"
-              className="inline-block ml-0.5 animate-pulse text-acc-gold"
+              className="inline-block ml-0.5 animate-pulse text-immortal-gold"
               aria-hidden="true"
             >
               ▌
@@ -143,19 +143,19 @@ function AssistantMessage({
 
         {/* 语音朗读按钮：打字完成后出现 */}
         {isDone && (
-          <div className="flex gap-2">
+          <div className="flex gap-1.5">
             <button
               type="button"
               data-testid={`chat-voice-${messageIndex}`}
               aria-label={isSpeaking ? '停止朗读' : '朗读回复'}
               onClick={() => onToggleSpeak(messageIndex, content)}
-              className={`self-start text-xs px-3 py-2 rounded border transition-colors ${
+              className={`self-start text-[11px] px-2.5 py-1 rounded-md border transition-all font-display ${
                 isSpeaking
-                  ? 'bg-acc-cinnabar/30 text-acc-gold-bright border-acc-cinnabar/50'
-                  : 'bg-bg-deep text-ink-dan border-acc-bronze/30 hover:text-acc-gold-bright hover:border-acc-gold'
+                  ? 'bg-cinnabar/20 text-immortal-gold-bright border-cinnabar/40'
+                  : 'bg-celestial-jade/60 text-ink-dan border-immortal-gold/20 hover:text-immortal-gold-bright hover:border-immortal-gold/40'
               }`}
             >
-              {isSpeaking ? '⏹ 停止' : '🔊 朗读'}
+              {isSpeaking ? '⏹' : '🔊 朗读'}
             </button>
             {/* 方言朗读按钮 */}
             <button
@@ -163,13 +163,13 @@ function AssistantMessage({
               data-testid={`chat-dialect-${messageIndex}`}
               aria-label={isDialectSpeaking ? '停止方言朗读' : `${dialectLabel}朗读`}
               onClick={() => onToggleDialectSpeak(messageIndex, content)}
-              className={`self-start text-xs px-3 py-2 rounded border transition-colors ${
+              className={`self-start text-[11px] px-2.5 py-1 rounded-md border transition-all font-display ${
                 isDialectSpeaking
-                  ? 'bg-acc-cinnabar/30 text-acc-gold-bright border-acc-cinnabar/50'
-                  : 'bg-bg-deep text-ink-dan border-acc-bronze/30 hover:text-acc-gold-bright hover:border-acc-gold'
+                  ? 'bg-cinnabar/20 text-immortal-gold-bright border-cinnabar/40'
+                  : 'bg-celestial-jade/60 text-ink-dan border-immortal-gold/20 hover:text-immortal-gold-bright hover:border-immortal-gold/40'
               }`}
             >
-              {isDialectSpeaking ? '⏹ 停止' : `🎵 ${dialectLabel}话`}
+              {isDialectSpeaking ? '⏹' : `🎵 ${dialectLabel}话`}
             </button>
           </div>
         )}
@@ -426,16 +426,20 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
     !isLoading && !isTyping && !!lastAssistant && messages.some((m) => m.role === 'user')
 
   return (
-    <div data-testid="creature-chat" className="mt-6 border border-acc-bronze/30 rounded-lg overflow-hidden bg-bg-raised">
+    <div data-testid="creature-chat" className="mt-4 celestial-card overflow-hidden">
       {/* Header */}
-      <div className="px-4 py-2 bg-bg-deep border-b border-acc-bronze/30 flex items-center gap-2">
-        <span className="text-acc-gold text-sm">💬</span>
-        <span className="font-display text-ink-primary text-sm">与{creature.name}对话</span>
+      <div className="px-4 py-2.5 bg-celestial-jade/60 border-b border-immortal-gold/20 flex items-center gap-2">
+        <span className="text-immortal-gold text-sm">💬</span>
+        <span className="font-display text-ink-heaven text-sm tracking-wider">与{creature.name}对话</span>
         <span
-          className={`text-xs ml-auto ${isOffline ? 'text-acc-cinnabar' : 'text-ink-faint'}`}
+          className={`text-[10px] ml-auto px-2 py-0.5 rounded-full font-display tracking-wider ${
+            isOffline
+              ? 'bg-cinnabar/15 text-cinnabar-bright border border-cinnabar/30'
+              : 'bg-jade-cui/15 text-jade-cui-light border border-jade-cui/30'
+          }`}
           data-testid="chat-mode-badge"
         >
-          {isOffline ? '离线模式' : '在线模式'}
+          {isOffline ? '离线' : '在线'}
         </span>
       </div>
 
@@ -447,7 +451,7 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
       >
         {messages.length === 0 && (
           <div className="text-center py-8">
-            <p className="text-ink-primary text-sm mb-3">
+            <p className="text-ink-heaven text-sm mb-3 font-display">
               向{creature.name}提问，了解它的故事……
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
@@ -456,7 +460,7 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
                   key={q}
                   onClick={() => handleSend(q)}
                   disabled={isLoading}
-                  className="px-3 py-2 text-xs rounded-full bg-bg-deep text-ink-primary border border-acc-bronze/30 hover:border-acc-gold hover:text-acc-gold-bright transition-colors disabled:opacity-50"
+                  className="px-3 py-1.5 text-xs rounded-full bg-celestial-fog/50 text-ink-zhong border border-immortal-gold/20 hover:border-immortal-gold/50 hover:text-immortal-gold-bright transition-all font-display disabled:opacity-50"
                 >
                   {q}
                 </button>
@@ -472,7 +476,7 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
               <button
                 key={q}
                 onClick={() => handleSend(q)}
-                className="px-3 py-2 text-xs rounded-full bg-bg-deep text-ink-primary border border-acc-bronze/30 hover:border-acc-gold hover:text-acc-gold-bright transition-colors"
+                className="px-3 py-1.5 text-xs rounded-full bg-celestial-fog/50 text-ink-zhong border border-immortal-gold/20 hover:border-immortal-gold/50 hover:text-immortal-gold-bright transition-all font-display"
               >
                 {q}
               </button>
@@ -484,7 +488,7 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
           if (msg.role === 'system') {
             return (
               <div key={i} className="flex justify-center" data-testid={`chat-msg-${i}`}>
-                <div className="max-w-[90%] text-center px-3 py-1.5 rounded text-xs text-acc-gold bg-acc-cinnabar/10 border border-acc-cinnabar/30">
+                <div className="max-w-[90%] text-center px-3 py-1.5 rounded-lg text-[11px] text-immortal-gold bg-cinnabar/8 border border-cinnabar/25 font-display">
                   {msg.content}
                 </div>
               </div>
@@ -497,7 +501,7 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
                 className="flex justify-end"
                 data-testid={`chat-msg-${i}`}
               >
-                <div className="max-w-[80%] px-3 py-2 rounded-lg text-sm bg-acc-bronze/20 text-ink-primary">
+                <div className="max-w-[80%] px-3.5 py-2.5 rounded-lg rounded-tr-sm text-sm bg-immortal-gold/12 text-ink-heaven border border-immortal-gold/25 font-display">
                   {msg.content}
                 </div>
               </div>
@@ -521,7 +525,7 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
 
         {isLoading && (
           <div className="flex justify-start" data-testid="chat-loading">
-            <div className="bg-bg-deep px-3 py-2 rounded-lg text-ink-faint text-sm">
+            <div className="bg-celestial-fog/50 px-3.5 py-2.5 rounded-lg rounded-tl-sm text-ink-faint text-sm border border-immortal-gold/15 font-display">
               <span className="animate-pulse">{creature.name}正在沉思</span>
               <span className="animate-pulse">……</span>
             </div>
@@ -536,7 +540,7 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
                 key={q}
                 onClick={() => handleSend(q)}
                 disabled={inputDisabled}
-                className="px-3 py-2 text-xs rounded-full bg-bg-deep text-ink-primary border border-acc-bronze/30 hover:border-acc-gold hover:text-acc-gold-bright transition-colors disabled:opacity-50"
+                className="px-3 py-1.5 text-xs rounded-full bg-celestial-fog/50 text-ink-zhong border border-immortal-gold/20 hover:border-immortal-gold/50 hover:text-immortal-gold-bright transition-all font-display disabled:opacity-50"
               >
                 {q}
               </button>
@@ -546,7 +550,7 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
       </div>
 
       {/* Input area */}
-      <div className="px-3 py-2 border-t border-acc-bronze/30 flex gap-2">
+      <div className="px-3 py-2.5 border-t border-immortal-gold/20 flex gap-2 bg-celestial-jade/40">
         <input
           type="text"
           inputMode="text"
@@ -557,13 +561,13 @@ export function CreatureChat({ creature, initialMessage }: CreatureChatProps) {
           onFocus={(e) => e.target.scrollIntoView({ behavior: 'smooth', block: 'center' })}
           placeholder={`向${creature.name}提问…`}
           disabled={inputDisabled}
-          className="flex-1 bg-bg-deep text-ink-primary text-base px-3 py-1.5 rounded border border-acc-bronze/30 focus:border-acc-gold focus:outline-none placeholder:text-ink-faint disabled:opacity-60"
+          className="flex-1 bg-celestial-fog/40 text-ink-heaven text-sm px-3.5 py-2 rounded-lg border border-immortal-gold/20 focus:border-immortal-gold/50 focus:outline-none placeholder:text-ink-faint disabled:opacity-60 font-display"
           data-testid="chat-input"
         />
         <button
           onClick={() => handleSend()}
           disabled={inputDisabled || !input.trim()}
-          className="px-4 py-2.5 rounded bg-acc-cinnabar/20 text-acc-gold-bright border border-acc-cinnabar/40 hover:bg-acc-cinnabar/30 transition-colors text-sm disabled:opacity-50"
+          className="px-4 py-2 rounded-lg bg-cinnabar/15 text-immortal-gold-bright border border-cinnabar/35 hover:bg-cinnabar/25 transition-all text-sm font-display tracking-wider disabled:opacity-40"
           data-testid="chat-send"
         >
           发送

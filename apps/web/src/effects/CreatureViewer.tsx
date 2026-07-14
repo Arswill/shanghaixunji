@@ -1,7 +1,5 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { EffectComposer, Bloom, ChromaticAberration } from '@react-three/postprocessing'
-import { BlendFunction } from 'postprocessing'
 import { CreatureParallax } from './CreatureParallax'
 
 interface CreatureViewerProps {
@@ -12,13 +10,21 @@ interface CreatureViewerProps {
 
 export function CreatureViewer({ creatureId, textureUrl, depthMapUrl }: CreatureViewerProps) {
   return (
+    <div style={{
+      width: '100%',
+      height: '100%',
+      background: 'radial-gradient(ellipse at 50% 40%, #2a231c 0%, #14110d 60%, #080705 100%)',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      position: 'relative',
+    }}>
     <Canvas
       camera={{ position: [0, 0, 5], fov: 50 }}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: true, alpha: false }}
       style={{ width: '100%', height: '100%' }}
     >
-      <ambientLight intensity={0.6} />
-      <pointLight position={[10, 10, 10]} intensity={1.0} />
+      <ambientLight intensity={0.8} />
+      <pointLight position={[10, 10, 10]} intensity={1.6} />
       <Suspense fallback={null}>
         <CreatureParallax
           creatureId={creatureId}
@@ -26,19 +32,15 @@ export function CreatureViewer({ creatureId, textureUrl, depthMapUrl }: Creature
           depthMapUrl={depthMapUrl}
         />
       </Suspense>
-      <EffectComposer>
-        <Bloom
-          luminanceThreshold={0.2}
-          luminanceSmoothing={0.9}
-          intensity={1.2}
-          mipmapBlur
-        />
-        <ChromaticAberration
-          blendFunction={BlendFunction.NORMAL}
-          offset={[0.0005, 0.0005]}
-        />
-      </EffectComposer>
     </Canvas>
+    {/* CSS 暗角效果——替代 postprocessing Vignette */}
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      pointerEvents: 'none',
+      background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%)',
+    }} />
+    </div>
   )
 }
 

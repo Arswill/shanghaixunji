@@ -13,21 +13,21 @@ import { CanvasMap, type ProvinceStyle, type TooltipData } from './CanvasMap'
 // ═══════════════════════════════════════════
 
 const COLORS = {
-  // 矿物颜料配色
-  moJiao: '#d4c8a0',                // 藤黄白 — 已探索描边
-  moQing: '#7a8a7a',                // 石青灰 — 未探索描边
-  paperMist: 'rgba(42, 36, 26, 0.65)',  // 深底半透明
+  // 高对比度配色 — 确保在暗色背景上清晰可见
+  moJiao: '#ffd54f',                  // 明金 — 已探索描边
+  moQing: '#e0c060',                  // 暖金 — 未探索描边（提高可见度）
+  paperMist: 'rgb(55, 45, 30)',       // 暖青铜色 — 未探索省份填充（实色，无alpha叠加）
   regionWash: {
-    south: 'rgba(74, 138, 90, 0.7)',    // 南山经 — 石绿
-    west: 'rgba(138, 106, 58, 0.68)',   // 西山经 — 赭石
-    north: 'rgba(74, 106, 138, 0.7)',   // 北山经 — 石青
-    east: 'rgba(106, 74, 138, 0.68)',   // 东山经 — 紫烟
-    central: 'rgba(139, 58, 42, 0.66)', // 中山经 — 朱砂
-    outer: 'rgba(90, 90, 90, 0.6)',     // 海外大荒 — 烟墨
+    south: 'rgb(40, 120, 70)',        // 南山经 — 石绿
+    west: 'rgb(140, 100, 40)',        // 西山经 — 赭石
+    north: 'rgb(40, 100, 150)',       // 北山经 — 石青
+    east: 'rgb(110, 60, 140)',        // 东山经 — 紫烟
+    central: 'rgb(150, 55, 35)',      // 中山经 — 朱砂
+    outer: 'rgb(80, 75, 60)',         // 海外大荒 — 烟墨
   } as Record<string, string>,
   glow: {
-    discovered: 'rgba(200, 160, 64, 0.8)',
-    hover: 'rgba(220, 180, 80, 0.95)',
+    discovered: 'rgba(255, 213, 79, 0.9)',
+    hover: 'rgba(255, 220, 100, 1)',
   },
 } as const
 
@@ -39,23 +39,23 @@ function getProvinceStyle(
   isHover: boolean
 ): ProvinceStyle {
   const baseStroke = discovered ? COLORS.moJiao : COLORS.moQing
-  const baseStrokeWidth = discovered ? (isHover ? 3.5 : 2.5) : (isHover ? 3.0 : 2.0)
-  const baseStrokeOpacity = discovered ? 1 : 0.9
+  const baseStrokeWidth = discovered ? (isHover ? 4 : 3) : (isHover ? 3.5 : 2.8)
+  const baseStrokeOpacity = 1
 
   if (!discovered) {
     return {
       fillColor: COLORS.paperMist,
-      fillOpacity: isHover ? 0.85 : 0.7,
+      fillOpacity: isHover ? 0.95 : 0.88,
       strokeColor: baseStroke,
       strokeWidth: baseStrokeWidth,
       strokeOpacity: baseStrokeOpacity,
-      dashArray: [4, 4],
+      dashArray: [6, 4],
       glowColor: isHover ? COLORS.glow.hover : undefined,
-      glowBlur: isHover ? 8 : 0,
+      glowBlur: isHover ? 10 : 0,
     }
   }
 
-  const density = count <= 1 ? 0.9 : count <= 3 ? 1.0 : count <= 5 ? 1.08 : 1.15
+  const density = 0.9
   return {
     fillColor: COLORS.regionWash[region.id] ?? COLORS.regionWash.outer,
     fillOpacity: isHover ? 1 : density,
@@ -169,8 +169,8 @@ export function MapView({ onSelect }: { onSelect: (p: string) => void }) {
       {/* 水墨远山剪影 */}
       <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none ink-map-mountains" aria-hidden="true" />
 
-      {/* 水墨云雾层 */}
-      <div className="pointer-events-none absolute inset-0 z-[400] overflow-hidden" aria-hidden="true">
+      {/* 水墨云雾层 — 降到地图下方，不遮挡省份 */}
+      <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden" aria-hidden="true">
         {INK_MIST_CLOUDS.map((cloud) => (
           <span
             key={cloud.id}
@@ -217,8 +217,8 @@ export function MapView({ onSelect }: { onSelect: (p: string) => void }) {
         <span>壬寅年摹</span>
       </div>
 
-      {/* 神话疆域氛围粒子 */}
-      <div className="pointer-events-none absolute inset-0 z-[500] overflow-hidden">
+      {/* 神话疆域氛围粒子 — 降到地图下方 */}
+      <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden">
         {ATMOSPHERE_PARTICLES.map((p) => (
           <span
             key={p.id}
