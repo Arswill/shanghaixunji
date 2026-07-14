@@ -60,10 +60,50 @@ export function getDialectLabel(province: string): string {
   return match ? match[1] : '普通话'
 }
 
-/** 获取预生成的方言音频 URL（从 manifest 或已知映射） */
+/** 省份 → 拼音映射（用于音频文件名，避免中文URL编码问题） */
+const PROVINCE_PINYIN: Record<string, string> = {
+  北京: 'beijing',
+  天津: 'tianjin',
+  河北: 'hebei',
+  山西: 'shanxi',
+  辽宁: 'liaoning',
+  吉林: 'jilin',
+  黑龙江: 'heilongjiang',
+  上海: 'shanghai',
+  江苏: 'jiangsu',
+  浙江: 'zhejiang',
+  安徽: 'anhui',
+  福建: 'fujian',
+  江西: 'jiangxi',
+  山东: 'shandong',
+  河南: 'henan',
+  湖北: 'hubei',
+  湖南: 'hunan',
+  广东: 'guangdong',
+  广西: 'guangxi',
+  海南: 'hainan',
+  重庆: 'chongqing',
+  四川: 'sichuan',
+  贵州: 'guizhou',
+  云南: 'yunnan',
+  西藏: 'xizang',
+  陕西: 'shaanxi',
+  甘肃: 'gansu',
+  青海: 'qinghai',
+  宁夏: 'ningxia',
+  新疆: 'xinjiang',
+  内蒙古: 'neimenggu',
+  台湾: 'taiwan',
+  香港: 'xianggang',
+  澳门: 'aomen',
+  两广: 'liangguang',
+}
+
+/** 获取预生成的方言音频 URL（使用拼音文件名避免中文编码问题） */
 export function getDialectAudioUrl(creatureId: string, province: string): string | null {
-  // V2 格式：{creature_id}__{province}.mp3
-  return `/assets/audio/${creatureId}__${province}.mp3`
+  const pinyin = PROVINCE_PINYIN[province]
+  if (!pinyin) return null
+  return `/assets/audio/${creatureId}__${pinyin}.mp3`
 }
 
 /** TTS 请求参数 */
