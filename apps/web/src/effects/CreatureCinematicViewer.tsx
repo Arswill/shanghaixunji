@@ -4,7 +4,8 @@
 
 import { Suspense, useRef, useState, useEffect, useMemo } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useGLTF, ContactShadows, OrbitControls } from '@react-three/drei'
+import { useGLTF, ContactShadows, OrbitControls, Environment, Lightformer } from '@react-three/drei'
+import { EffectComposer, Bloom, Vignette, N8AO, SMAA } from '@react-three/postprocessing'
 import * as THREE from 'three'
 import gsap from 'gsap'
 
@@ -227,20 +228,18 @@ function CreatureModel({ creatureId, config, groupRef, modelOpacityRef, onLoaded
 
   const emissiveColor = useMemo(() => new THREE.Color(config.palette.primary), [config.palette.primary])
 
-  // 设置所有材质为透明 + 增加自发光确保模型可见
+  // 设置材质透明 + 保留原始 PBR 纹理（不加全模型自发光）
   useEffect(() => {
     clonedScene.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         const setupMat = (m: THREE.Material) => {
           m.transparent = true
           m.opacity = 0
-          // 增强 PBR 材质：添加自发光和提升环境光响应
           if (m instanceof THREE.MeshStandardMaterial) {
-            m.emissive = emissiveColor.clone().multiplyScalar(0.15)
-            m.emissiveIntensity = 1.0
-            m.envMapIntensity = 1.5
-            // 提升材质的粗糙度下限，确保不会全黑
-            if (m.roughness > 0.9) m.roughness = 0.8
+            // 保留原始纹理，仅微调 PBR 参数
+            m.envMapIntensity = 1.8
+            m.roughness = Math.max(0.35, m.roughness)
+            m.metalness = Math.min(0.7, m.metalness)
           }
         }
         if (Array.isArray(child.material)) {
@@ -251,7 +250,7 @@ function CreatureModel({ creatureId, config, groupRef, modelOpacityRef, onLoaded
       }
     })
     onLoaded()
-  }, [clonedScene, onLoaded, emissiveColor])
+  }, [clonedScene, onLoaded])
 
   // 每帧更新透明度
   useFrame(() => {
@@ -285,7 +284,7 @@ function CreatureModel({ creatureId, config, groupRef, modelOpacityRef, onLoaded
 
   return (
     <group ref={groupRef}>
-      <primitive object={clonedScene} scale={1.2} position={[0, -0.3, 0]} />
+      <primitive object={clonedScene} scale={1.6} position={[0, -0.4, 0]} />
     </group>
   )
 }
@@ -336,28 +335,33 @@ function CinematicScene({ creatureId, config, reducedMotion, onLoaded }: {
 
   return (
     <>
-      {/* 灯光 — 增强光照确保模型可见 */}
-      <ambientLight color={config.scene.lighting.ambient.color} intensity={config.scene.lighting.ambient.intensity + 0.5} />
+      {/* 收敛灯光：主光 + 轮廓光 */}
       <directionalLight
         color={config.scene.lighting.main.color}
         intensity={config.scene.lighting.main.intensity + 1.0}
         position={config.scene.lighting.main.position}
+        castShadow
+        shadow-mapSize={[2048, 2048]}
+        shadow-bias={-0.0001}
       />
       <directionalLight
         color={config.scene.lighting.rim.color}
-        intensity={config.scene.lighting.rim.intensity + 0.6}
+        intensity={config.scene.lighting.rim.intensity + 1.0}
         position={config.scene.lighting.rim.position}
       />
-      {/* 半球光：从上方提供环境填充 */}
-      <hemisphereLight color={config.palette.accent} groundColor={config.palette.background} intensity={0.4} />
-      {/* 法阵向上的点光，照亮模型底部 */}
-      <pointLight position={[0, -1, 0]} color={config.palette.primary} intensity={1.5} distance={6} />
-      {/* 正面聚光灯，确保模型面部清晰 */}
-      <spotLight position={[0, 1, 4]} angle={0.6} penumbra={0.5} intensity={2.0} color={config.palette.accent} distance={12} castShadow={false} />
-      {/* 背光轮廓光 — 从后方照射创造边缘高光 */}
-      <pointLight position={[0, 2, -4]} color={config.palette.secondary} intensity={1.2} distance={10} />
-      {/* 侧光增加立体感 */}
-      <pointLight position={[-3, 0, 2]} color={config.palette.primary} intensity={0.6} distance={8} />
+
+      {/* 暗黑奇幻环境贴图 — PBR 反射 */}
+      <Environment resolution={256} background={false}>
+        <color attach="background" args={['#000']} />
+        <Lightformer form="rect" intensity={2.5} color="#9fb4d6"
+          position={[0, 4, 1]} scale={[6, 1, 1]} rotation={[-Math.PI / 2, 0, 0]} />
+        <Lightformer form="rect" intensity={4} color={config.palette.primary}
+          position={[-4, 1, -2]} scale={[1, 4, 1]} rotation={[0, Math.PI / 2, 0]} />
+        <Lightformer form="rect" intensity={3} color={config.palette.secondary}
+          position={[4, 1, -3]} scale={[1, 4, 1]} rotation={[0, -Math.PI / 2, 0]} />
+        <Lightformer form="circle" intensity={1.2} color="#fff"
+          position={[0, 1, 5]} scale={2} />
+      </Environment>
 
       {/* 三层视差背景 */}
       <BackgroundScene scene={config.scene} />
@@ -373,14 +377,7 @@ function CinematicScene({ creatureId, config, reducedMotion, onLoaded }: {
         speed={config.particles.speed}
       />
 
-      {/* 魔法法阵 */}
-      <MagicCircle
-        scaleRef={magicCircleScaleRef}
-        opacityRef={magicCircleOpacityRef}
-        color={config.palette.primary}
-      />
-
-      {/* 神兽模型 + 入场动画（EntranceAnimator 必须在 Suspense 内，确保模型加载后才启动动画）*/}
+      {/* 神兽模型 + 入场动画 */}
       <Suspense fallback={null}>
         <CreatureModel
           creatureId={creatureId}
@@ -407,9 +404,27 @@ function CinematicScene({ creatureId, config, reducedMotion, onLoaded }: {
       />
 
       {/* 接触阴影 */}
-      <ContactShadows position={[0, -1.5, 0]} opacity={0.3} scale={4} blur={2} />
+      <ContactShadows position={[0, -1.5, 0]} opacity={0.4} scale={5} blur={2} />
 
-      {/* 后处理 Bloom 暂时移除 — @react-three/postprocessing 与当前 Three.js 版本有循环引用 JSON 序列化兼容性问题 */}
+      {/* 电影感后处理 */}
+      <EffectComposer multisampling={4} disableNormalPass>
+        <Bloom
+          luminanceThreshold={0.6}
+          luminanceSmoothing={0.85}
+          intensity={0.9}
+          mipmapBlur
+          radius={0.7}
+        />
+        <N8AO
+          aoRadius={0.6}
+          intensity={1.4}
+          distanceFalloff={0.6}
+          halfRes
+          color="#000000"
+        />
+        <Vignette offset={0.3} darkness={0.85} eskil={false} />
+        <SMAA />
+      </EffectComposer>
     </>
   )
 }
@@ -475,10 +490,14 @@ export function CreatureCinematicViewer({ creatureId, creatureName }: CreatureCi
 
       <Canvas
         key={creatureId}
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        gl={{ antialias: true, alpha: false }}
+        shadows
+        dpr={[1, 2]}
+        camera={{ position: [0, 0.3, 3.5], fov: 38 }}
+        gl={{ antialias: true, alpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: true }}
         style={{ background: config.palette.background }}
         onCreated={({ gl }) => {
+          gl.toneMapping = THREE.ACESFilmicToneMapping
+          gl.toneMappingExposure = 1.2
           gl.setClearColor(config.palette.background, 1)
         }}
       >
