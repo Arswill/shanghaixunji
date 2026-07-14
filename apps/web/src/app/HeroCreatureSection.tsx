@@ -24,7 +24,6 @@ interface HeroCreatureSectionProps {
 export function HeroCreatureSection({ onExplore, goCreature, setInitialMessage }: HeroCreatureSectionProps) {
   const discovered = useCollection((s) => s.discovered)
   const guardianProvince = useGuardianStore((s) => s.province)
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [input, setInput] = useState('')
 
   // 神兽选择逻辑（混合策略）— 首页优先展示有 3D 模型的神兽
@@ -46,14 +45,28 @@ export function HeroCreatureSection({ onExplore, goCreature, setInitialMessage }
       }
     }
 
-    // 优先级2：节气推荐中，过滤出有 3D 模型的神兽
+    // 优先级2：节气推荐神兽（不论是否有 3D 模型，确保节气相关性）
     const seasonIds = getCurrentSeasonCreatureIds()
-    const seasonWith3d = seasonIds.filter(id => has3DModel(id))
-    if (seasonWith3d.length > 0) return toCreature(seasonWith3d)
+    if (seasonIds.length > 0) {
+      const seasonCreatures = toCreature(seasonIds)
+      // 有 3D 的排前面，无 3D 的也能展示（用 2D 画像）
+      const with3d = seasonCreatures.filter(c => has3DModel(c.id))
+      const without3d = seasonCreatures.filter(c => !has3DModel(c.id))
+      if (with3d.length > 0 || without3d.length > 0) {
+        return [...with3d, ...without3d]
+      }
+    }
 
     // 优先级3：固定推荐（全都有 3D 模型）
     return toCreature([...FEATURED_IDS])
   }, [guardianProvince, discovered])
+
+  // 随机初始索引，避免每次打开都是同一只神兽
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    // 基于当日日期生成稳定的随机数（同一天打开看到同一只，第二天换一只）
+    const dayOfYear = Math.floor(Date.now() / (1000 * 60 * 60 * 24))
+    return dayOfYear % 6 // FEATURED_IDS 有 6 只，取模轮换
+  })
 
   const currentCreature = creaturePool[currentIndex] ?? creaturePool[0]
 

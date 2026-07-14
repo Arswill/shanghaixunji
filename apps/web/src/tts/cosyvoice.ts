@@ -99,22 +99,16 @@ export interface TTSResult {
  * 调用方言 TTS 服务
  *
  * 优先级：
- * 1. 预生成 Demo 音频（无需 API 调用，即时播放）
+ * 1. 预生成方言音频（V2 格式 {creatureId}__{province}.mp3，真实方言语音）
  * 2. /api/tts 代理调用 DashScope CosyVoice（实时生成）
  * 3. Web Speech API 回退（浏览器内置 TTS，无方言效果）
+ *
+ * 注意：旧的 _demo.mp3 文件为普通话生成，已弃用，优先使用方言专用音频。
  */
 export async function speakDialect(req: TTSRequest): Promise<TTSResult> {
   const dialectLabel = getDialectLabel(req.province)
 
-  // 1. 优先使用预生成 Demo 音频
-  if (req.creatureId) {
-    const demoUrl = getDemoAudioUrl(req.creatureId)
-    if (demoUrl) {
-      return { audioUrl: demoUrl, dialectLabel, isDemo: true }
-    }
-  }
-
-  // 2. 预生成方言音频检测（V2 格式：{creatureId}__{province}.mp3）
+  // 1. 预生成方言音频（V2 格式：{creatureId}__{province}.mp3）
   if (req.creatureId && req.province) {
     const dialectUrl = getDialectAudioUrl(req.creatureId, req.province)
     if (dialectUrl) {
@@ -122,7 +116,7 @@ export async function speakDialect(req: TTSRequest): Promise<TTSResult> {
     }
   }
 
-  // 3. 调用 /api/tts 代理
+  // 2. 调用 /api/tts 代理
   try {
     const response = await fetch('/api/tts', {
       method: 'POST',
