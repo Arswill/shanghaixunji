@@ -436,21 +436,29 @@ export function CreatureCinematicViewer({ creatureId, creatureName }: CreatureCi
       <div
         className="w-full h-full relative flex items-center justify-center overflow-hidden"
         style={{
-          background: `radial-gradient(ellipse at center, ${config.palette.background} 0%, #000 100%)`,
+          background: `radial-gradient(ellipse at center, ${config.palette.primary}15 0%, ${config.palette.background} 60%, #000 100%)`,
         }}
       >
+        {/* 光环背光 */}
+        <div
+          className="absolute w-[60%] h-[60%] rounded-full blur-3xl"
+          style={{
+            background: `radial-gradient(circle, ${config.palette.primary}30 0%, transparent 70%)`,
+          }}
+        />
         {imageUrl ? (
           <img
             src={imageUrl}
             alt={creatureName}
-            className="max-w-[80%] max-h-[80%] object-contain"
+            className="relative max-w-[75%] max-h-[75%] object-contain rounded-lg"
             style={{
-              filter: `drop-shadow(0 0 30px ${config.palette.primary}60) drop-shadow(0 0 60px ${config.palette.background}80)`,
+              filter: `drop-shadow(0 0 20px ${config.palette.primary}80) drop-shadow(0 0 40px ${config.palette.accent}40) brightness(1.1) contrast(1.1)`,
               animation: reducedMotion ? 'none' : `gentle-float 6s ease-in-out infinite`,
+              boxShadow: `0 0 30px ${config.palette.primary}40`,
             }}
           />
         ) : (
-          <div className="text-center space-y-4">
+          <div className="relative text-center space-y-4">
             <div className="text-7xl" style={{ filter: `drop-shadow(0 0 20px ${config.palette.primary}50)` }}>
               🐉
             </div>

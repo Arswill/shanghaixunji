@@ -11,9 +11,10 @@ import { DialectPlayer } from './DialectPlayer'
 import type { CreatureWithAssets } from '../data/loadCreatures'
 import { has3DModel } from '../effects/creature-3d-manifest'
 
-// 有 3D 模型的精选神兽（首页轮换池）
+// 有 3D 模型 + 有方言音频的精选神兽（首页轮换池）
+// 排除了 qi-lin(山西/无音频) 和 kun-peng(海南/无音频)
 const FEATURED_IDS = [
-  'jiu-wei-hu', 'ying-long', 'bi-fang', 'qi-lin', 'kun-peng', 'zhu-que',
+  'jiu-wei-hu', 'ying-long', 'bi-fang', 'zhu-que',
   'bai-hu', 'bai-ze', 'xuan-wu', 'qiong-qi', 'xing-tian', 'tao-tie',
 ] as const
 
